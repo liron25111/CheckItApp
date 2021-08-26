@@ -15,19 +15,19 @@
             <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
             <Label Text="Hello" TextColor="White" FontSize="60" Margin="20,0,0,0" FontAttributes="Bold" FontFamily="Noto Sans JP"></Label>
             <Label Text="Sign in to your account" TextColor="White" FontSize="25" Margin="20,-10,0,0" FontFamily="Noto Sans JP"></Label>
-            <Frame WidthRequest="10" HeightRequest="240" CornerRadius="20" Margin="10,30">
+            <Frame WidthRequest="10" HeightRequest="220" CornerRadius="20" Margin="20,30">
                 <StackLayout>
                     <Label Text="Username" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
-                    <Entry  Placeholder="Enter Your Username: " PlaceholderColor="#B2B2B2" TextColor="Black" Margin="0,-5"> </Entry>
+                    <Entry  Placeholder="Enter Your Username " PlaceholderColor="#B2B2B2" TextColor="Black" Margin="0,-5"> </Entry>
                     <Label Padding="0,20,0,0" Text="Password" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
-                    <Entry  Placeholder="Enter Your Password:" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
-                    <Label  Padding="160,20,0,0" Text="Forgot your password?" TextColor="#B2B2B2" FontFamily="Roboto" FontSize="19" ></Label>
+                    <Entry  Placeholder="Enter Your Password" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
+                    <Label  Padding="160,20,0,0" Text="Forgot your password?" TextColor="#B2B2B2" FontFamily="Roboto" FontSize="17" ></Label>
                 
                 </StackLayout>
                 
             </Frame>
             <Button BackgroundColor="#4E4F79"   Text=" Sign In" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"> </Button>
-            <Label  Text="Don't have an account? Create" HorizontalTextAlignment="Center" TextColor="Black" Padding="0,10" FontSize="15"></Label>
+            <Label  Text="Don't have an account? Create" HorizontalTextAlignment="Center" TextColor="#E8E5E5" Padding="0,10" FontSize="15"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
