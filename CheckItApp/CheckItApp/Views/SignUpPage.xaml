@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckItApp.Views.SignUpPage">
+    <ContentPage.Content>
+        <ScrollView >
+            <StackLayout VerticalOptions="FillAndExpand">
+                <StackLayout.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#011724" Offset="0.1">
+
+                    </GradientStop>
+                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </StackLayout.Background>
+            <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
+            <Label Text="Welcome!" TextColor="White" FontSize="40" Margin="20,0,0,0" FontAttributes="Bold" FontFamily="Noto Sans JP" HorizontalOptions="Center"></Label>
+            <Label Text="Sign up and continue" TextColor="White" FontSize="25" Margin="20,0,0,0"  FontFamily="Noto Sans JP" HorizontalOptions="Center"></Label>
+                <Frame WidthRequest="10" HeightRequest="460" CornerRadius="20" Margin="15,30">
+                    <StackLayout>
+                        <Label Text="Username" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Entry  Placeholder="Enter Your Username: " PlaceholderColor="#B2B2B2" TextColor="Black" Margin="0,-5"></Entry>
+                        <Label Padding="0,20,0,0" Text="Password" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Entry  Placeholder="Enter Your Password:" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
+                        <Label Padding="0,20,0,0" Text="Email" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Entry  Placeholder="Enter Your Email:" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
+                        <Label Padding="0,20,0,0" Text="Birth" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <DatePicker MinimumDate="01/01/2018"  MaximumDate="08/26/2021" Date="06/21/2018" TextColor="#B2B2B2" />
+                        <Label Padding="0,20,0,0" Text="School Code" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Entry  Placeholder="Enter Your School Code:" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
+
+                    </StackLayout>
+
+                </Frame>
+                <Button BackgroundColor="#4E4F79" Text=" Sign Up" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0,70,20" CornerRadius="20"></Button>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
