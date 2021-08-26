@@ -11,7 +11,7 @@ namespace CheckItApp
         {
             InitializeComponent();
 
-            MainPage = new ForgetPassword1();
+            MainPage = new ForgetPassword2();
         }
 
         protected override void OnStart()
