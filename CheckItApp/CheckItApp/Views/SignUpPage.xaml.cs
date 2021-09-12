@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using CheckItApp.ViewModels;
 
 namespace CheckItApp.Views
 {
@@ -15,6 +16,7 @@ namespace CheckItApp.Views
         public SignUpPage()
         {
             InitializeComponent();
+            this.BindingContext = new SingUpViewPageModel();
         }
     }
 }
