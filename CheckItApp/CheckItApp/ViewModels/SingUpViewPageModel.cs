@@ -101,15 +101,57 @@ namespace CheckItApp.ViewModels
             this.ShowSchoolCodeError = string.IsNullOrEmpty(schoolCode);
         }
         #endregion
+        #region קוד כיתה
+        private bool showclassIdError;
+        public bool ShowClassIdError
+        {
+            get => showclassIdError;
+            set
+            {
+                showclassIdError = value;
+                OnPropertyChanged("ShowClassIdError");
+            }
+        }
+
+        private string classid;
+
+        public string ClassId
+        {
+            get => classid;
+            set
+            {
+                classid = value;
+                ValidateClassId();
+                OnPropertyChanged("ClassId");
+            }
+        }
+
+        private string classidError;
+
+        public string ClassIdError
+        {
+            get => classidError;
+            set
+            {
+                classidError = value;
+                OnPropertyChanged("ClassIdError");
+            }
+        }
+
+        private void ValidateClassId()
+        {
+            this.ShowClassIdError = string.IsNullOrEmpty(classid);
+        }
+        #endregion
         private bool ValidateForm()
         {
             //Validate all fields first
             ValidateName();
             ValidateSchoolCode();
-
+            ValidateClassId();
             //check if any validation failed
             if (
-                ShowNameError || ShowSchoolCodeError)
+                ShowNameError || ShowSchoolCodeError || ShowClassIdError)
                 return false;
             return true;
         }
@@ -118,6 +160,8 @@ namespace CheckItApp.ViewModels
         {
             this.NameError = "זהו שדה חובה";
             this.ShowNameError = false;
+            this.ClassIdError = "זהו שדה חובה";
+            this.ShowClassIdError = false;
             this.SchoolCodeError = "זהו שדה חובה";
             this.ShowSchoolCodeError = false;
             this.SaveDataCommand = new Command(() => SaveData());
