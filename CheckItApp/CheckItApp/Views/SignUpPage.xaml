@@ -4,22 +4,9 @@
              x:Class="CheckItApp.Views.SignUpPage">
     <ContentPage.Resources>
 
-        <ResourceDictionary>
-            <Style x:Key="labelNameStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
-            </Style>
-            <Style x:Key="labelErrorStyle" TargetType="Label">
-                <Setter Property="HorizontalOptions" Value="End" />
-                <Setter Property="TextColor" Value="Red" />
-                <Setter Property="FontSize" Value="Small" />
-            </Style>
-            <Style x:Key="entryStyle" TargetType="Entry">
-                <Setter Property="HorizontalOptions" Value="Fill" />
-            </Style>
-
-        </ResourceDictionary>
+     
     </ContentPage.Resources>
-    <ContentPage.Content>
+    <ContentPage.Content> 
         <ScrollView >
             <StackLayout VerticalOptions="FillAndExpand">
                 <StackLayout.Background>
@@ -35,21 +22,64 @@
             <Label Text="Sign up and continue" TextColor="White" FontSize="25" Margin="20,0,0,0"  FontFamily="Noto Sans JP" HorizontalOptions="Center"></Label>
                 <Frame WidthRequest="10" HeightRequest="630" CornerRadius="20" Margin="15,30">
                     <StackLayout>
-                        <Label Text="Username" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Label Text="Username" Style="{StaticResource Labels}"></Label>
                         <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Entry  Placeholder="Enter Your Username: " Text="{Binding Name}" Style="{StaticResource entryStyle}" PlaceholderColor="#B2B2B2" TextColor="Black" Margin="0,-5"/>
-                          <Label Padding="0,20,0,0" Text="Password" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
-                        <Entry  Placeholder="Enter Your Password:" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
-                        <Label Padding="0,20,0,0" Text="Email" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
-                        <Entry  Placeholder="Enter Your Email:" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
-                        <Label Padding="0,20,0,0" Text="Birth" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
-                        <DatePicker MinimumDate="01/01/2018"  MaximumDate="08/26/2021" Date="06/21/2018" TextColor="#B2B2B2" />
-                        <Label Padding="0,20,0,0" Text="School Code" TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Grid x:Name="UserNameGrid" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <Entry  Placeholder="Enter Your Username " Text="{Binding Name}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Image Source="AccountIcon.png" Grid.Column="1" />
+                        </Grid>
+                        <Label  Text="Password" Style="{StaticResource Labels}"></Label>
+                        <Grid x:Name="PassGrid" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <Entry  Placeholder="Enter Your Password " Text="{Binding Password}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Image Source="PassIcon.png" Grid.Column="1" />
+                        </Grid>
+                        <Label Text="Email" Style="{StaticResource Labels}"></Label>
+                        <Grid x:Name="EmailGrid" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <Entry  Placeholder="Enter Your Email " Text="{Binding Email}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Image Source="EmailIcon.png" Grid.Column="1" />
+                        </Grid>
+                        <Label  Text="Birth" Style="{StaticResource Labels}"></Label>
+                        
+                        <Grid x:Name="BirthDay" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <DatePicker MinimumDate="01/01/2018"  MaximumDate="08/26/2021" Date="06/21/2018" TextColor="#B2B2B2" Grid.Column="0" />
+                            <Image Source="DateIcon.png" Grid.Column="1" />
+                        </Grid>
+                        <Label Text="School Code" Style="{StaticResource Labels}"></Label>
                         <Label Text="{Binding SchoolCodeError}" IsVisible="{Binding ShowSchoolCodeError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Entry  Placeholder="Enter Your School Code:" Text="{Binding SchoolCode}" Style="{StaticResource entryStyle}" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
-                        <Label Padding="0,20,0,0" Text="Class id " TextColor="#787777" FontFamily="Roboto" FontSize="20"></Label>
+                        <Grid x:Name="SchoolCodeGrid" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <Entry  Placeholder="Enter Your  School Code " Text="{Binding SchoolCode}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Image Source="CodeIcon.png" Grid.Column="1" />
+                        </Grid>
+                        <Label  Text="Class id " Style="{StaticResource Labels}"></Label>
                         <Label Text="{Binding ClassIdError}" IsVisible="{Binding ShowClassIdError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Entry  Placeholder="Enter Your Class id :"  Text="{Binding ClassId}" Style="{StaticResource entryStyle}" PlaceholderColor="#B2B2B2" Margin="0,-5" TextColor="#B2B2B2"  ></Entry>
+                        <Grid x:Name=" ClassidGrid" VerticalOptions="CenterAndExpand">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="80*" />
+                                <ColumnDefinition Width="20*" />
+                            </Grid.ColumnDefinitions>
+                            <Entry  Placeholder="Enter Your  Class Id " Text="{Binding ClassId}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Image Source="CodeIcon.png" Grid.Column="1" />
+                        </Grid>
                     </StackLayout>
 
                 </Frame>
