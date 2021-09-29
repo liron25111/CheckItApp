@@ -1,6 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using CheckItApp.Services;
+using CheckItApp.Models;
+using System.Threading.Tasks;
 using CheckItApp.Views;
 
 namespace CheckItApp
@@ -8,12 +11,14 @@ namespace CheckItApp
     public partial class App : Application
     {
         public static bool IsDevEnv { get; internal set; }
+        public Account CurrentUser { get; set; }
 
         public App()
         {
             InitializeComponent();
 
             MainPage = new SignUpPage();
+            CurrentUser = null;
         }
 
         protected override void OnStart()

@@ -23,7 +23,7 @@ namespace CheckItApp.Services
         private HttpClient client;
         private string baseUri;
         private static CheckItApi proxy = null;
-        internal static object CreateProxy()
+        internal static CheckItApi CreateProxy()
         {
             string baseUri;
             if (App.IsDevEnv)
@@ -62,6 +62,11 @@ namespace CheckItApp.Services
             //Create client with the handler!
             this.client = new HttpClient(handler, true);
             this.baseUri = baseUri;
+        }
+
+        internal Task<bool> RegisterUser(Account u)
+        {
+            throw new NotImplementedException();
         }
     }
 
