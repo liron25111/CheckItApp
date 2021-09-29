@@ -53,6 +53,40 @@ namespace CheckItApp.Services
                 proxy = new CheckItApi(baseUri);
             return proxy;
         }
+
+        public async Task<Account> SignUpAccount(string email, string pass, string name, string classId, string schoolCode)
+        {
+            throw new NotImplementedException();
+
+        }
+
+        public async Task<bool?> EmailExists(string email)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/email-exists?email={email}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    bool? b = JsonSerializer.Deserialize<bool?>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         private CheckItApi(string baseUri)
         {
             //Set client handler to support cookies!!
@@ -64,10 +98,6 @@ namespace CheckItApp.Services
             this.baseUri = baseUri;
         }
 
-        internal Task<bool> RegisterUser(Account u)
-        {
-            throw new NotImplementedException();
-        }
+       
     }
-
 }

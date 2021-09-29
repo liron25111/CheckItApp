@@ -59,16 +59,31 @@ namespace CheckItApp.ViewModels
             }
         }
 
-        private void ValidateEmail()
+        private async void ValidateEmail()
         {
-            try
-            {
-                var addr = new System.Net.Mail.MailAddress(email);
-                this.ShowEmailError = addr.Address != email;
-            }
-            catch
+            bool? exists = await proxy.EmailExists(Email);
+            if (exists == true)
             {
                 this.ShowEmailError = true;
+                this.EmailError = "Email address already exists";
+            }
+            else if (exists == null)
+            {
+                ShowError = true;
+                Error = "Unknown error occured. Try again";
+            }
+            else
+            {
+                try
+                {
+                    var addr = new System.Net.Mail.MailAddress(Email);
+                    this.ShowEmailError = addr.Address != Email;
+                }
+                catch
+                {
+                    EmailError = "Invalid email address";
+                    this.ShowEmailError = true;
+                }
             }
         }
         #endregion
@@ -200,7 +215,7 @@ namespace CheckItApp.ViewModels
                 OnPropertyChanged("SchoolCodeError");
             }
         }
-       
+
         private void ValidateSchoolCode()
         {
             this.ShowSchoolCodeError = string.IsNullOrEmpty(schoolCode);
@@ -265,6 +280,7 @@ namespace CheckItApp.ViewModels
         public ICommand RegisterCommand { get; set; } // RegisterCommand
         public event Action<Page> Push;
         private string error;
+        private bool ShowError;
         public string Error// get eror
         {
             get
@@ -280,10 +296,12 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+        private CheckItApi proxy;
+
         public SingUpViewPageModel()
 
         {
-          
+
 
             this.NameError = "זהו שדה חובה";
             this.ShowNameError = false;
@@ -300,36 +318,26 @@ namespace CheckItApp.ViewModels
             this.EmailError = "כתובת אימייל זו אינה תקינה";
             this.ShowEmailError = false;
 
-            this.SaveDataCommand = new Command(() => SaveData());
-      
+
             RegisterCommand = new Command(Register);
+            proxy = CheckItApi.CreateProxy();
+
         }
+
         private async void Register()
         {
-            CheckItApi proxy = CheckItApi.CreateProxy();
-            try
+            if (ValidateForm())
             {
-                Account u = new Account() { Email = email, Pass = pass, ClassId = classid, SchoolCode = schoolCode };
-                bool t = await proxy.RegisterUser(u);
-                if (t)
-                {
-                    ((App)App.Current).CurrentUser = u;
-                    Push?.Invoke(new CheckItApp.Views.LoginPage());
-                }
+                Account account = await proxy.SignUpAccount(Email, Pass, Name, ClassId, SchoolCode);
+                ((App)App.Current).CurrentUser = account;
+                Push?.Invoke(new CheckItApp.Views.LoginPage());
+
             }
-            catch (Exception)
+             else
             {
                 Error = "Something went Wrong";
             }
         }
-     
-        public Command SaveDataCommand { protected set; get; }
-        private async void SaveData()
-        {
-            if (ValidateForm())
-                await App.Current.MainPage.DisplayAlert("שמירת נתונים", "הנתונים נבדקו ונשמרו", "אישור", FlowDirection.RightToLeft);
-            else
-                await App.Current.MainPage.DisplayAlert("שמירת נתונים", "יש בעיה עם הנתונים", "אישור", FlowDirection.RightToLeft);
-        }
     }
+
 }
