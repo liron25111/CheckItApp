@@ -60,7 +60,7 @@
                                 <ColumnDefinition Width="80*" />
                                 <ColumnDefinition Width="20*" />
                             </Grid.ColumnDefinitions>
-                            <Entry  Placeholder="Enter Your  School Code " Text="{Binding SchoolCode}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Entry  Placeholder="Enter Your School Code " Text="{Binding SchoolCode}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
                             <Image Source="CodeIcon.png" Grid.Column="1" />
                         </Grid>
                         <Label  Text="Class id " Style="{StaticResource Labels}"></Label>
@@ -70,12 +70,12 @@
                                 <ColumnDefinition Width="80*" />
                                 <ColumnDefinition Width="20*" />
                             </Grid.ColumnDefinitions>
-                            <Entry  Placeholder="Enter Your  Class Id " Text="{Binding ClassId}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Entry  Placeholder="Enter Your Class Id " Text="{Binding ClassId}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
                             <Image Source="CodeIcon.png" Grid.Column="1" />
                         </Grid>
                     </StackLayout>
                 </Frame>
-                <Button BackgroundColor="#4E4F79" Text=" Sign Up" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" Command="{Binding SaveDataCommand}" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0,70,20" CornerRadius="20"></Button>
+                <Button BackgroundColor="#4E4F79" Text=" Sign Up" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" Command="{Binding RegisterCommand}" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0,70,20" CornerRadius="20"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

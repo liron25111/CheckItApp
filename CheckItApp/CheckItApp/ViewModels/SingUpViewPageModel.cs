@@ -61,29 +61,39 @@ namespace CheckItApp.ViewModels
 
         private async void ValidateEmail()
         {
-            bool? exists = await proxy.EmailExists(Email);
-            if (exists == true)
+          if(Email == "")
             {
-                this.ShowEmailError = true;
-                this.EmailError = "Email address already exists";
+                ShowEmailError = true;
             }
-            else if (exists == null)
-            {
-                ShowError = true;
-                Error = "Unknown error occured. Try again";
-            }
-            else
+          else
             {
                 try
                 {
                     var addr = new System.Net.Mail.MailAddress(Email);
                     this.ShowEmailError = addr.Address != Email;
+                    if(ShowEmailError == false)
+                    {
+                        bool? exists = await proxy.EmailExists(Email);
+                        if (exists == true)
+                        {
+                            this.ShowEmailError = true;
+                            this.EmailError = "אימייל זה קיים כבר במערכת אנא הכנס אימייל חדש";
+                        }
+                        else if (exists == null)
+                        {
+                            ShowError = true;
+                            Error = "קרתה תקלה, נסה שוב לאחר מכן";
+                        }
+                    }
                 }
                 catch
                 {
-                    EmailError = "Invalid email address";
+                    EmailError = "כתובת אימייל זו אינה תקינה";
+
                     this.ShowEmailError = true;
                 }
+       
+              
             }
         }
         #endregion
@@ -328,9 +338,13 @@ namespace CheckItApp.ViewModels
         {
             if (ValidateForm())
             {
-                Account account = await proxy.SignUpAccount(Email, Pass, Name, ClassId, SchoolCode);
-                ((App)App.Current).CurrentUser = account;
-                Push?.Invoke(new CheckItApp.Views.LoginPage());
+                Account u = new Account() { Email = email, Pass = pass, Username = name, ClassId = classid, SchoolCode = schoolCode };
+                bool t = await proxy.SignUpAccount(u);
+                if (t)
+                {
+                    ((App)App.Current).CurrentUser = u;
+                    Push?.Invoke(new CheckItApp.Views.LoginPage());
+                }
 
             }
              else
