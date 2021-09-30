@@ -312,7 +312,6 @@ namespace CheckItApp.ViewModels
 
         {
 
-
             this.NameError = "זהו שדה חובה";
             this.ShowNameError = false;
 
@@ -327,7 +326,6 @@ namespace CheckItApp.ViewModels
 
             this.EmailError = "כתובת אימייל זו אינה תקינה";
             this.ShowEmailError = false;
-
 
             RegisterCommand = new Command(Register);
             proxy = CheckItApi.CreateProxy();
