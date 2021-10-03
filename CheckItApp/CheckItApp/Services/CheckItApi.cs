@@ -64,7 +64,7 @@ namespace CheckItApp.Services
                 };
                 string json = JsonSerializer.Serialize<Account>(u, options);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/RegisterUser", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/SignUpAccount", content);
                 if (response.IsSuccessStatusCode)
                 {
 

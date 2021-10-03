@@ -17,7 +17,7 @@ namespace CheckItApp
         {
             InitializeComponent();
 
-            MainPage = new SignUpPage();
+            MainPage = new LoginPage();
             CurrentUser = null;
         }
 
