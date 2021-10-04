@@ -22,81 +22,7 @@ namespace CheckItApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-        #region אימייל
-        private bool showEmailError;
-        public bool ShowEmailError
-        {
-            get => showEmailError;
-            set
-            {
-                showEmailError = value;
-                OnPropertyChanged("ShowEmailError");
-            }
-        }
-
-        private string email;
-
-        public string Email
-        {
-            get => email;
-            set
-            {
-                email = value;
-                ValidateEmail();
-                OnPropertyChanged("Email");
-            }
-        }
-
-        private string emailError;
-
-        public string EmailError
-        {
-            get => emailError;
-            set
-            {
-                emailError = value;
-                OnPropertyChanged("EmailError");
-            }
-        }
-
-        private async void ValidateEmail()
-        {
-          if(Email == "")
-            {
-                ShowEmailError = true;
-            }
-          else
-            {
-                try
-                {
-                    var addr = new System.Net.Mail.MailAddress(Email);
-                    this.ShowEmailError = addr.Address != Email;
-                    if(ShowEmailError == false)
-                    {
-                        bool? exists = await proxy.EmailExists(Email);
-                        if (exists == true)
-                        {
-                            this.ShowEmailError = true;
-                            this.EmailError = "אימייל זה קיים כבר במערכת אנא הכנס אימייל חדש";
-                        }
-                        else if (exists == null)
-                        {
-                            ShowError = true;
-                            Error = "קרתה תקלה, נסה שוב לאחר מכן";
-                        }
-                    }
-                }
-                catch
-                {
-                    EmailError = "כתובת אימייל זו אינה תקינה";
-
-                    this.ShowEmailError = true;
-                }
-       
-              
-            }
-        }
-        #endregion
+     
         #region סיסמה
         private bool showPassError;
         public bool ShowPassError
@@ -148,7 +74,7 @@ namespace CheckItApp.ViewModels
         #region שם
         private bool showNameError;
 
-        public bool ShowNameError
+        public bool ShowMashovCodeError
         {
             get => showNameError;
             set
@@ -158,132 +84,46 @@ namespace CheckItApp.ViewModels
             }
         }
 
-        private string name;
+        private string mashovCode;
 
-        public string Name
+        public string MashovCode
         {
-            get => name;
+            get => mashovCode;
             set
             {
-                name = value;
-                ValidateName();
-                OnPropertyChanged("Name");
+                mashovCode = value;
+                ValidateMashovCode();
+                OnPropertyChanged("MashovCode");
             }
         }
 
-        private string nameError;
+        private string mashovCodeError;
 
-        public string NameError
+        public string MashovCodeError
         {
-            get => nameError;
+            get => mashovCodeError;
             set
             {
-                nameError = value;
-                OnPropertyChanged("NameError");
+                mashovCodeError = value;
+                OnPropertyChanged("MashovCodeError");
             }
         }
 
-        private void ValidateName()
+        private void ValidateMashovCode()
         {
-            this.ShowNameError = string.IsNullOrEmpty(Name);
+            this.ShowMashovCodeError = string.IsNullOrEmpty(MashovCode);
         }
         #endregion
-        #region קוד בית ספר
-        private bool showSchoolCodeError;
-
-        public bool ShowSchoolCodeError
-        {
-            get => showSchoolCodeError;
-            set
-            {
-                showSchoolCodeError = value;
-                OnPropertyChanged("ShowSchoolCodeError");
-            }
-        }
-
-        private string schoolCode;
-
-        public string SchoolCode
-        {
-            get => schoolCode;
-            set
-            {
-                schoolCode = value;
-                ValidateSchoolCode();
-                OnPropertyChanged("SchoolCode");
-            }
-        }
-
-        private string schoolCodeError;
-
-        public string SchoolCodeError
-        {
-            get => schoolCodeError;
-            set
-            {
-                schoolCodeError = value;
-                OnPropertyChanged("SchoolCodeError");
-            }
-        }
-
-        private void ValidateSchoolCode()
-        {
-            this.ShowSchoolCodeError = string.IsNullOrEmpty(schoolCode);
-        }
-        #endregion
-        #region קוד כיתה
-        private bool showclassIdError;
-        public bool ShowClassIdError
-        {
-            get => showclassIdError;
-            set
-            {
-                showclassIdError = value;
-                OnPropertyChanged("ShowClassIdError");
-            }
-        }
-
-        private string classid;
-
-        public string ClassId
-        {
-            get => classid;
-            set
-            {
-                classid = value;
-                ValidateClassId();
-                OnPropertyChanged("ClassId");
-            }
-        }
-
-        private string classidError;
-
-        public string ClassIdError
-        {
-            get => classidError;
-            set
-            {
-                classidError = value;
-                OnPropertyChanged("ClassIdError");
-            }
-        }
-
-        private void ValidateClassId()
-        {
-            this.ShowClassIdError = string.IsNullOrEmpty(classid);
-        }
-        #endregion
+       
         private bool ValidateForm()
         {
             //Validate all fields first
-            ValidateName();
-            ValidateSchoolCode();
-            ValidateClassId();
-            ValidateEmail();
+            ValidateMashovCode();
+         
             ValidatePass();
             //check if any validation failed
             if (
-                ShowNameError || ShowSchoolCodeError || ShowClassIdError || ShowPassError || ShowEmailError)
+                ShowMashovCodeError ||  ShowPassError )
                 return false;
             return true;
         }
@@ -312,44 +152,39 @@ namespace CheckItApp.ViewModels
 
         {
 
-            this.NameError = "זהו שדה חובה";
-            this.ShowNameError = false;
+            this.MashovCodeError = "זהו שדה חובה";
+            this.ShowMashovCodeError = false;
 
             PassError = "זהו שדה חובה";
             this.ShowPassError = false;
 
-            this.ClassIdError = "זהו שדה חובה";
-            this.ShowClassIdError = false;
 
-            this.SchoolCodeError = "זהו שדה חובה";
-            this.ShowSchoolCodeError = false;
 
-            this.EmailError = "כתובת אימייל זו אינה תקינה";
-            this.ShowEmailError = false;
 
-            RegisterCommand = new Command(Register);
+
+            //RegisterCommand = new Command(Register);
             proxy = CheckItApi.CreateProxy();
 
         }
 
-        private async void Register()
-        {
-            if (ValidateForm())
-            {
-                Account u = new Account() { Email = email, Pass = pass, Username = name, ClassId = classid, SchoolCode = schoolCode };
-                bool t = await proxy.SignUpAccount(u);
-                if (t)
-                {
-                    ((App)App.Current).CurrentUser = u;
-                    Push?.Invoke(new CheckItApp.Views.LoginPage());
-                }
+        //private async void Register()
+        //{
+        //    if (ValidateForm())
+        //    {
+        //        Account u = new Account() { Pass = pass, MashovCode = MashovCode };
+        //        bool t = await proxy.SignUpAccount(u);
+        //        if (t)
+        //        {
+        //            ((App)App.Current).CurrentUser = u;
+        //            Push?.Invoke(new CheckItApp.Views.LoginPage());
+        //        }
 
-            }
-             else
-            {
-                Error = "Something went Wrong";
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        Error = "Something went Wrong";
+        //    }
+        //}
     }
 
 }

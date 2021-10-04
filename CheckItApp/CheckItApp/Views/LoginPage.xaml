@@ -44,7 +44,7 @@
                 
             </Frame>
             <Button BackgroundColor="#4E4F79"   Text=" Sign In" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"> </Button>
-            <Label  Text="Don't have an account? Create" HorizontalTextAlignment="Center" TextColor="#E8E5E5" Padding="0,10" FontSize="15">
+            <Label  Text="אם אתה מנהל בית ספר ועדיין לא התחברת לחץ כאן" HorizontalTextAlignment="Center" TextColor="#E8E5E5" Padding="0,10" FontSize="15">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Command="{Binding CreateAccount}" /> 
                 </Label.GestureRecognizers>

@@ -20,16 +20,16 @@
             <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
             <Label Text="Welcome!" TextColor="White" FontSize="40" Margin="20,0,0,0" FontAttributes="Bold" FontFamily="Noto Sans JP" HorizontalOptions="Center"></Label>
             <Label Text="Sign up and continue" TextColor="White" FontSize="25" Margin="20,0,0,0"  FontFamily="Noto Sans JP" HorizontalOptions="Center"></Label>
-                <Frame WidthRequest="10" HeightRequest="630" CornerRadius="20" Margin="15,30">
+                <Frame WidthRequest="10" HeightRequest="250" CornerRadius="20" Margin="15,30">
                     <StackLayout>
-                        <Label Text="Username" Style="{StaticResource Labels}"></Label>
-                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Grid x:Name="UserNameGrid" VerticalOptions="CenterAndExpand">
+                        <Label Text="Mashov Code" Style="{StaticResource Labels}"></Label>
+                        <Label Text="{Binding MashovCodeError}" IsVisible="{Binding ShowMashovCodeError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
+                        <Grid x:Name="MashovCodeGrid" VerticalOptions="CenterAndExpand">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="80*" />
                                 <ColumnDefinition Width="20*" />
                             </Grid.ColumnDefinitions>
-                            <Entry  Placeholder="Enter Your Username " Text="{Binding Name}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                            <Entry  Placeholder="Enter Your Mashov Code " Text="{Binding MashovCode}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
                             <Image Source="AccountIcon.png" Grid.Column="1" />
                         </Grid>
                         <Label  Text="Password" Style="{StaticResource Labels}"></Label>
@@ -42,37 +42,9 @@
                             <Entry  Placeholder="Enter Your Password " Text="{Binding Pass}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
                             <Image Source="PassIcon.png" Grid.Column="1" />
                         </Grid>
-                        <Label Text="Email" Style="{StaticResource Labels}"></Label>
-                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Grid x:Name="EmailGrid" VerticalOptions="CenterAndExpand">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80*" />
-                                <ColumnDefinition Width="20*" />
-                            </Grid.ColumnDefinitions>
-                            <Entry  Placeholder="Enter Your Email " Text="{Binding Email}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
-                            <Image Source="EmailIcon.png" Grid.Column="1" />
-                        </Grid>
+                       
                     
-                        <Label Text="School Code" Style="{StaticResource Labels}"></Label>
-                        <Label Text="{Binding SchoolCodeError}" IsVisible="{Binding ShowSchoolCodeError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Grid x:Name="SchoolCodeGrid" VerticalOptions="CenterAndExpand">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80*" />
-                                <ColumnDefinition Width="20*" />
-                            </Grid.ColumnDefinitions>
-                            <Entry  Placeholder="Enter Your School Code " Text="{Binding SchoolCode}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
-                            <Image Source="CodeIcon.png" Grid.Column="1" />
-                        </Grid>
-                        <Label  Text="Class id " Style="{StaticResource Labels}"></Label>
-                        <Label Text="{Binding ClassIdError}" IsVisible="{Binding ShowClassIdError} " Style="{StaticResource labelErrorStyle}" HorizontalOptions="End"></Label>
-                        <Grid x:Name=" ClassidGrid" VerticalOptions="CenterAndExpand">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="80*" />
-                                <ColumnDefinition Width="20*" />
-                            </Grid.ColumnDefinitions>
-                            <Entry  Placeholder="Enter Your Class Id " Text="{Binding ClassId}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
-                            <Image Source="CodeIcon.png" Grid.Column="1" />
-                        </Grid>
+                   
                     </StackLayout>
                 </Frame>
                 <Button BackgroundColor="#4E4F79" Text=" Sign Up" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" Command="{Binding RegisterCommand}" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0,70,20" CornerRadius="20"></Button>
