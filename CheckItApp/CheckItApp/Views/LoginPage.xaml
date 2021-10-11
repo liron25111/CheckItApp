@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheckItApp.Views.LoginPage">
+             x:Class="CheckItApp.Views.LoginPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>
@@ -18,14 +19,14 @@
             <Label Text="Sign in to your account" TextColor="White" FontSize="25" Margin="20,-10,0,0" FontFamily="Noto Sans JP"></Label>
             <Frame WidthRequest="10" HeightRequest="300" CornerRadius="20" Margin="20,20">
                 <StackLayout>
-                    <Label Text="Username" Style="{StaticResource Labels}"></Label>
-                    <Grid x:Name="UserNameGrid" VerticalOptions="CenterAndExpand">
+                    <Label Text="Email" Style="{StaticResource Labels}"></Label>
+                        <Grid x:Name="EmailGrid" VerticalOptions="CenterAndExpand">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="80*" />
                             <ColumnDefinition Width="20*" />
                         </Grid.ColumnDefinitions>
-                        <Entry  Placeholder="Enter Your Username " Text="{Binding Name}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
-                        <Image Source="AccountIcon.png" Grid.Column="1" />
+                            <Entry  Placeholder="Enter Your Email " Text="{Binding Email}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                        <Image Source="EmailIcon.png" Grid.Column="1" />
                     </Grid>
                     <Label  Text="Password" Style="{StaticResource Labels}"></Label>
                     <Grid x:Name="PassGrid" VerticalOptions="CenterAndExpand">
@@ -33,34 +34,33 @@
                             <ColumnDefinition Width="80*" />
                             <ColumnDefinition Width="20*" />
                         </Grid.ColumnDefinitions>
-                        <Entry  Placeholder="Enter Your Password " Text="{Binding Pass}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                        <Entry  Placeholder="Enter Your Password " Text="{Binding Password}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
                         <Image Source="PassIcon.png" Grid.Column="1" />
                     </Grid>
                     <Label  Text="Forgot your password?" HorizontalTextAlignment="End" TextColor="#B2B2B2" Padding="0,10" FontSize="15">
                         <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding ForgotPass}" />
+                                <TapGestureRecognizer Command="{Binding ForgotPassCommand}" />
                         </Label.GestureRecognizers>
                     </Label>
                 </StackLayout>
                 
             </Frame>
-                <Button BackgroundColor="#4E4F79"   Text=" Sign In" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"></Button>
+                <Button BackgroundColor="#4E4F79"   Text=" Sign In" Command="{Binding LoginCommand}" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"></Button>
 
-
-             
-           
                 <Label HorizontalOptions="CenterAndExpand" TextColor="White">
                     <Label.FormattedText>
                         <FormattedString>
                             <Span Text="אם אתה מנהל בית ספר ועדיין לא התחברת " />
                             <Span Text="לחץ כאן" FontAttributes="Bold">
                                 <Span.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding CreateAccount}" />
+                                    <TapGestureRecognizer Command="{Binding SignUpCommand}" />
                                 </Span.GestureRecognizers>
                             </Span>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Label Text="{Binding Error} " FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" TextColor="Red" FontSize="Medium" />
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

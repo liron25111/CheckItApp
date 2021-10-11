@@ -17,8 +17,9 @@ namespace CheckItApp
         {
             InitializeComponent();
 
-            MainPage = new LoginPage();
+            MainPage = new NavigationPage(new LoginPage());
             CurrentUser = null;
+            IsDevEnv = true;
         }
 
         protected override void OnStart()

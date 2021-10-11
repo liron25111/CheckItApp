@@ -16,8 +16,8 @@ namespace CheckItApp.Services
     class CheckItApi
     {
         private const string CLOUD_URL = "TBD"; //API url when going on the cloud
-        private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:52537/api"; //API url when using emulator on android
-        private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:52537/api"; //API url when using physucal device on android
+        private const string DEV_ANDROID_EMULATOR_URL = "http://10.0.2.2:44379/api"; //API url when using emulator on android
+        private const string DEV_ANDROID_PHYSICAL_URL = "http://192.168.1.14:44379/api"; //API url when using physucal device on android
         private const string DEV_WINDOWS_URL = "https://localhost:44379/api"; //API url when using windoes on development
 
         private HttpClient client;
@@ -84,6 +84,34 @@ namespace CheckItApp.Services
             }
        
     }
+
+        public async Task<Account> LoginAsync(string email, string pass)
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/Login?email={email}&pass={pass}";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    Account u = JsonSerializer.Deserialize<Account>(content, options);
+                    return u;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
 
         public async Task<bool?> EmailExists(string email)
         {

@@ -1,5 +1,4 @@
-﻿using CheckItApp.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,15 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace CheckItApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class ProfilePage : ContentPage
     {
-        public LoginPage()
+        public ProfilePage()
         {
-
             InitializeComponent();
-            LoginPageViewModel Lvm = new LoginPageViewModel();
-            BindingContext = Lvm;
-            Lvm.Push += (p) => Navigation.PushAsync(p);
         }
     }
 }
