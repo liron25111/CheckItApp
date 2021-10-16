@@ -1,12 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheckItApp.Views.ProfilePage">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="CheckItApp.Views.ProfilePage" NavigationPage.HasNavigationBar="False">
+    
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+            
+            <StackLayout.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#011724" Offset="0.1">
+
+                    </GradientStop>
+                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </StackLayout.Background>
+
+                <Frame HeightRequest="90" WidthRequest="90" BackgroundColor="#a5b3f9" >
+                    <StackLayout>
+                        <Label Text="{Binding Account.Username}" TextColor="Black" FontSize="25"></Label>
+                        <Label Text="{Binding Account.Email}" TextColor="White" FontSize="25"></Label>
+
+                    </StackLayout>
+                </Frame>
+                <Label  Text="Nick name" Style="{StaticResource Labels2}" Margin="0,20,0,0" ></Label>
+                <Frame BackgroundColor="#13649E
+">
+                    <Grid x:Name="NameGrid" VerticalOptions="Center" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Account.Username}" TextColor="White" FontSize="25" HorizontalOptions="Center"></Label>
+                        <Image Source="AccountIcon.png" Grid.Column="0" HorizontalOptions="Start"/>
+                    </Grid>
+                </Frame>
+                <Label  Text="Email" Style="{StaticResource Labels2}"  Margin="0,20,0,0"></Label>
+                <Frame BackgroundColor="#13649E
+">
+                    <Grid x:Name="EmailGrid" VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Account.Email}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
+                        <Image Source="EmailIcon.png" Grid.Column="0"  HorizontalOptions="Start"/>
+                    </Grid>
+                </Frame>
+                <Label  Text="Password" Style="{StaticResource Labels2}" Margin="0,20,0,0"></Label>
+                <Frame BackgroundColor="#13649E
+">
+                    <Grid x:Name="PassGrid" VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80*" />
+                            <ColumnDefinition Width="20*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="{Binding Account.Pass}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
+                        <Image Source="PassIcon.png" Grid.Column="0" HorizontalOptions="Start" />
+                        <Image Source="changePass.png"  Grid.Column="1" HorizontalOptions="End"></Image>
+                    </Grid>
+                </Frame>
+
+
+                <Button BackgroundColor="#4E4F79" Text=" Continue to the app" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="20" Command="{Binding ProfileToMainApp}" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,50,70,20" CornerRadius="20"></Button>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

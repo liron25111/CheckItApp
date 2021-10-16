@@ -27,6 +27,12 @@
                 <Setter Property="TextColor" Value="Black"></Setter>
                 <Setter Property="Margin" Value="0,-5"></Setter>
             </Style>
+            <Style x:Key="Labels2" TargetType="Entry">
+                <Setter Property="PlaceholderColor" Value="##BBB9B9"></Setter>
+                <Setter Property="TextColor" Value="#BBB9B9"></Setter>
+                <Setter Property="FontSize" Value="20"></Setter>
+            </Style>
+
 
         </ResourceDictionary>
     </Application.Resources>
