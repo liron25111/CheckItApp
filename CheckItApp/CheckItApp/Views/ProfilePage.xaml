@@ -20,7 +20,6 @@
                     <StackLayout>
                         <Label Text="{Binding Account.Username}" TextColor="Black" FontSize="25"></Label>
                         <Label Text="{Binding Account.Email}" TextColor="White" FontSize="25"></Label>
-
                     </StackLayout>
                 </Frame>
                 <AbsoluteLayout Margin="0">
@@ -66,10 +65,7 @@
                         <Button ImageSource="changePass.png" Command="{Binding ChangePass}"  Grid.Column="1" HorizontalOptions="End"></Button>
                     </Grid>
                 </Frame>
-
-
                 <Button BackgroundColor="#4E4F79" Text=" Continue to the app" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="20" Command="{Binding ProfileToMainApp}" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,50,70,20" CornerRadius="20"></Button>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -139,7 +139,35 @@ namespace CheckItApp.Services
                 return null;
             }
         }
+        
 
+        public async Task<Account> ResetPassAsync(string pass,string Newpassword)
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/ResetPass?pass={pass}&Newpassword={Newpassword}";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    Account u = JsonSerializer.Deserialize<Account>(content, options);
+                    return u;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
         private CheckItApi(string baseUri)
         {
             //Set client handler to support cookies!!
