@@ -6,16 +6,16 @@
     <ContentPage.Content>
         <ScrollView>
         <StackLayout>
-            
-            <StackLayout.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="#011724" Offset="0.1">
 
-                    </GradientStop>
-                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
-                </LinearGradientBrush>
-            </StackLayout.Background>
+                <StackLayout.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#011724" Offset="0.1">
 
+                        </GradientStop>
+                        <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                    </LinearGradientBrush>
+                </StackLayout.Background>
+                
                 <Frame HeightRequest="90" WidthRequest="90" BackgroundColor="#a5b3f9" >
                     <StackLayout>
                         <Label Text="{Binding Account.Username}" TextColor="Black" FontSize="25"></Label>
@@ -23,6 +23,10 @@
 
                     </StackLayout>
                 </Frame>
+                <AbsoluteLayout Margin="0">
+                    <Image Source="AccountIcon2.png"  AbsoluteLayout.LayoutBounds="325, -45, 70, 70"></Image>
+
+                </AbsoluteLayout>
                 <Label  Text="Nick name" Style="{StaticResource Labels2}" Margin="0,20,0,0" ></Label>
                 <Frame BackgroundColor="#13649E
 ">
@@ -32,9 +36,11 @@
                             <ColumnDefinition Width="20*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Account.Username}" TextColor="White" FontSize="25" HorizontalOptions="Center"></Label>
-                        <Image Source="AccountIcon.png" Grid.Column="0" HorizontalOptions="Start"/>
+                        <Image Source="NameIcon.png" Grid.Column="0" HorizontalOptions="Start"/>
                     </Grid>
+
                 </Frame>
+
                 <Label  Text="Email" Style="{StaticResource Labels2}"  Margin="0,20,0,0"></Label>
                 <Frame BackgroundColor="#13649E
 ">
@@ -57,7 +63,7 @@
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Account.Pass}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
                         <Image Source="PassIcon.png" Grid.Column="0" HorizontalOptions="Start" />
-                        <Image Source="changePass.png"  Grid.Column="1" HorizontalOptions="End"></Image>
+                        <Button ImageSource="changePass.png" Command="{Binding ChangePass}"  Grid.Column="1" HorizontalOptions="End"></Button>
                     </Grid>
                 </Frame>
 

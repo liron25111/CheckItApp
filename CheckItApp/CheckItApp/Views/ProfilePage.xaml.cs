@@ -19,5 +19,10 @@ namespace CheckItApp.Views
             BindingContext = Lvm;
             Lvm.Push += (p) => Navigation.PushAsync(p);
         }
+
+        private void ImageButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }

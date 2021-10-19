@@ -33,16 +33,21 @@ namespace CheckItApp.ViewModels
         }
 
         public ICommand ProfileToMainApp { get; set; }// login Command
-
+        public ICommand ChangePass { get; set; }
         public ProfilePageViewModel()
         {
             Account = ((App)App.Current).CurrentUser;
             ProfileToMainApp = new Command(PushToApp);
-
+            ChangePass = new Command(ResetPass);
         }
         public void PushToApp()
         {
             Push?.Invoke(new CheckItApp.Views.HomePage());
+
+        }
+        public void ResetPass()
+        {
+            Push?.Invoke(new CheckItApp.Views.ResetPasswordPage());
 
         }
     }
