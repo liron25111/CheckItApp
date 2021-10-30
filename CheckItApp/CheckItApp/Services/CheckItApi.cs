@@ -141,11 +141,11 @@ namespace CheckItApp.Services
         }
         
 
-        public async Task<Account> ResetPassAsync(string pass,string Newpassword)
+        public async Task<Account> ResetPassAsync(string Pass)
         {
             try
             {
-                string uri = $"{this.baseUri}/ResetPass?pass={pass}&Newpassword={Newpassword}";
+                string uri = $"{this.baseUri}/ResetPass?Pass={Pass}";
                 HttpResponseMessage response = await this.client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {
@@ -166,6 +166,32 @@ namespace CheckItApp.Services
             {
                 Console.WriteLine(e.Message);
                 return null;
+            }
+        }
+        public async Task<bool> ForgotPassword(string email)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/ForgotPassword?email={email}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    bool b = JsonSerializer.Deserialize<bool>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
             }
         }
         private CheckItApi(string baseUri)

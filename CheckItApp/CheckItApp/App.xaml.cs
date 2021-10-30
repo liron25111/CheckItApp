@@ -17,7 +17,7 @@ namespace CheckItApp
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new ProfilePage());
+            MainPage = new NavigationPage(new LoginPage());
             CurrentUser = null;
             IsDevEnv = true;
         }

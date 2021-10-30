@@ -76,7 +76,7 @@ namespace CheckItApp.ViewModels
 
             try
             {
-                Account u = await proxy.ResetPassAsync(Account.Pass,Newpassword);
+                Account u = await proxy.ResetPassAsync(Newpassword);
                 if (u != null)
                 {
                     ((App)App.Current).CurrentUser = u;
