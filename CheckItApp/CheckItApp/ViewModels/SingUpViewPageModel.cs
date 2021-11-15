@@ -22,7 +22,56 @@ namespace CheckItApp.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-     
+        #region אימייל
+        private bool showEmailError;
+        public bool ShowEmailError
+        {
+            get => showEmailError;
+            set
+            {
+                showEmailError = value;
+                OnPropertyChanged("ShowEmailError");
+            }
+        }
+
+        private string email;
+
+        public string Email
+        {
+            get => email;
+            set
+            {
+                email = value;
+                ValidateEmail();
+                OnPropertyChanged("Email");
+            }
+        }
+
+        private string emailError;
+
+        public string EmailError
+        {
+            get => emailError;
+            set
+            {
+                emailError = value;
+                OnPropertyChanged("EmailError");
+            }
+        }
+
+        private void ValidateEmail()
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                this.ShowEmailError = addr.Address != email;
+            }
+            catch
+            {
+                this.ShowEmailError = true;
+            }
+        }
+        #endregion
         #region סיסמה
         private bool showPassError;
         public bool ShowPassError
@@ -74,7 +123,7 @@ namespace CheckItApp.ViewModels
         #region שם
         private bool showNameError;
 
-        public bool ShowMashovCodeError
+        public bool ShowNameError
         {
             get => showNameError;
             set
@@ -84,53 +133,138 @@ namespace CheckItApp.ViewModels
             }
         }
 
-        private string mashovCode;
+        private string name;
 
-        public string MashovCode
+        public string Name
         {
-            get => mashovCode;
+            get => name;
             set
             {
-                mashovCode = value;
-                ValidateMashovCode();
-                OnPropertyChanged("MashovCode");
+                name = value;
+                ValidateName();
+                OnPropertyChanged("Name");
             }
         }
 
-        private string mashovCodeError;
+        private string nameError;
 
-        public string MashovCodeError
+        public string NameError
         {
-            get => mashovCodeError;
+            get => nameError;
             set
             {
-                mashovCodeError = value;
-                OnPropertyChanged("MashovCodeError");
+                nameError = value;
+                OnPropertyChanged("NameError");
             }
         }
 
-        private void ValidateMashovCode()
+        private void ValidateName()
         {
-            this.ShowMashovCodeError = string.IsNullOrEmpty(MashovCode);
+            this.ShowNameError = string.IsNullOrEmpty(Name);
         }
         #endregion
-       
+        #region קוד בית ספר
+        private bool showSchoolCodeError;
+
+        public bool ShowSchoolCodeError
+        {
+            get => showSchoolCodeError;
+            set
+            {
+                showSchoolCodeError = value;
+                OnPropertyChanged("ShowSchoolCodeError");
+            }
+        }
+
+        private string schoolCode;
+
+        public string SchoolCode
+        {
+            get => schoolCode;
+            set
+            {
+                schoolCode = value;
+                ValidateSchoolCode();
+                OnPropertyChanged("SchoolCode");
+            }
+        }
+
+        private string schoolCodeError;
+
+        public string SchoolCodeError
+        {
+            get => schoolCodeError;
+            set
+            {
+                schoolCodeError = value;
+                OnPropertyChanged("SchoolCodeError");
+            }
+        }
+
+        private void ValidateSchoolCode()
+        {
+            this.ShowSchoolCodeError = string.IsNullOrEmpty(schoolCode);
+        }
+        #endregion
+        #region קוד כיתה
+        private bool showclassIdError;
+        public bool ShowClassIdError
+        {
+            get => showclassIdError;
+            set
+            {
+                showclassIdError = value;
+                OnPropertyChanged("ShowClassIdError");
+            }
+        }
+
+        private string classid;
+
+        public string ClassId
+        {
+            get => classid;
+            set
+            {
+                classid = value;
+                ValidateClassId();
+                OnPropertyChanged("ClassId");
+            }
+        }
+
+        private string classidError;
+
+        public string ClassIdError
+        {
+            get => classidError;
+            set
+            {
+                classidError = value;
+                OnPropertyChanged("ClassIdError");
+            }
+        }
+
+        private void ValidateClassId()
+        {
+            this.ShowClassIdError = string.IsNullOrEmpty(classid);
+        }
+        #endregion
         private bool ValidateForm()
         {
             //Validate all fields first
-            ValidateMashovCode();
-         
+            ValidateName();
+            ValidateSchoolCode();
+            ValidateClassId();
+            ValidateEmail();
             ValidatePass();
             //check if any validation failed
             if (
-                ShowMashovCodeError ||  ShowPassError )
+                ShowNameError || ShowSchoolCodeError || ShowClassIdError || ShowPassError || ShowEmailError)
                 return false;
             return true;
         }
         public ICommand RegisterCommand { get; set; } // RegisterCommand
         public event Action<Page> Push;
         private string error;
-        private bool ShowError;
         public string Error// get eror
         {
             get
@@ -146,45 +280,57 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
-        private CheckItApi proxy;
-
         public SingUpViewPageModel()
 
         {
 
-            this.MashovCodeError = "זהו שדה חובה";
-            this.ShowMashovCodeError = false;
+
+            this.NameError = "זהו שדה חובה";
+            this.ShowNameError = false;
 
             PassError = "זהו שדה חובה";
             this.ShowPassError = false;
 
+            this.ClassIdError = "זהו שדה חובה";
+            this.ShowClassIdError = false;
 
+            this.SchoolCodeError = "זהו שדה חובה";
+            this.ShowSchoolCodeError = false;
 
+            this.EmailError = "כתובת אימייל זו אינה תקינה";
+            this.ShowEmailError = false;
 
+            this.SaveDataCommand = new Command(() => SaveData());
 
-            //RegisterCommand = new Command(Register);
-            proxy = CheckItApi.CreateProxy();
-
+            //    RegisterCommand = new Command(Register);
         }
-
         //private async void Register()
         //{
-        //    if (ValidateForm())
+        //    CheckItApi proxy = CheckItApi.CreateProxy();
+        //    try
         //    {
-        //        Account u = new Account() { Pass = pass, MashovCode = MashovCode };
-        //        bool t = await proxy.SignUpAccount(u);
+        //        Account u = new Account() { Email = email, Username= name, Pass = pass };
+        //        bool t = await proxy.RegisterUser(u);
         //        if (t)
         //        {
-        //            ((App)App.Current).CurrentUser = u;
-        //            Push?.Invoke(new CheckItApp.Views.LoginPage());
-        //        }
 
+        //            ((App)App.Current).CurrentUser = u;
+        //            Push?.Invoke(new CheckItApp.Views.UploadFile());
+        //        }
         //    }
-        //    else
+        //    catch (Exception)
         //    {
         //        Error = "Something went Wrong";
         //    }
         //}
-    }
 
+        public Command SaveDataCommand { protected set; get; }
+        private async void SaveData()
+        {
+            if (ValidateForm())
+                await App.Current.MainPage.DisplayAlert("שמירת נתונים", "הנתונים נבדקו ונשמרו", "אישור", FlowDirection.RightToLeft);
+            else
+                await App.Current.MainPage.DisplayAlert("שמירת נתונים", "יש בעיה עם הנתונים", "אישור", FlowDirection.RightToLeft);
+        }
+    }
 }

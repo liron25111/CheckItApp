@@ -4,9 +4,14 @@
              x:Class="CheckItApp.Views.HomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#011724" Offset="0.1">
+
+                    </GradientStop>
+                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </StackLayout.Background>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

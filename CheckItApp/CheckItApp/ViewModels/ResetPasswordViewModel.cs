@@ -11,7 +11,7 @@ namespace CheckItApp.ViewModels
 {
     class ResetPasswordViewModel : BaseViewModel
     {
-        private string Newpassword;
+        private string newpassword;
         public event Action<Page> Push;
         private string error;
 
@@ -31,18 +31,18 @@ namespace CheckItApp.ViewModels
             }
         }
 
-        public string Password // GetPassword
+        public string NewPassword // GetPassword
         {
             get
             {
-                return Newpassword;
+                return newpassword;
             }
             set
             {
-                if (Newpassword != value)
+                if (newpassword != value)
                 {
-                    Newpassword = value;
-                    OnPropertyChanged();
+                    newpassword = value;
+                    OnPropertyChanged("NewPassword");
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace CheckItApp.ViewModels
 
             try
             {
-                Account u = await proxy.ResetPassAsync(Newpassword);
+                Account u = await proxy.ResetPassAsync(NewPassword, account.Email);
                 if (u != null)
                 {
                     ((App)App.Current).CurrentUser = u;

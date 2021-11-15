@@ -31,8 +31,8 @@
 ">
                     <Grid x:Name="NameGrid" VerticalOptions="Center" >
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80*" />
-                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="60*" />
+                            <ColumnDefinition Width="40*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Account.Username}" TextColor="White" FontSize="25" HorizontalOptions="Center"></Label>
                         <Image Source="NameIcon.png" Grid.Column="0" HorizontalOptions="Start"/>
@@ -45,8 +45,8 @@
 ">
                     <Grid x:Name="EmailGrid" VerticalOptions="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80*" />
-                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="95*" />
+                            <ColumnDefinition Width="5*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Account.Email}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
                         <Image Source="EmailIcon.png" Grid.Column="0"  HorizontalOptions="Start"/>
@@ -57,12 +57,12 @@
 ">
                     <Grid x:Name="PassGrid" VerticalOptions="Center">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="80*" />
-                            <ColumnDefinition Width="20*" />
+                            <ColumnDefinition Width="60*" />
+                            <ColumnDefinition Width="40*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="{Binding Account.Pass}" TextColor="White" FontSize="25" HorizontalTextAlignment="Center"></Label>
                         <Image Source="PassIcon.png" Grid.Column="0" HorizontalOptions="Start" />
-                        <Button ImageSource="changePass.png" Command="{Binding ChangePass}"  Grid.Column="1" HorizontalOptions="End"></Button>
+                        <Button ImageSource="changePass.png" Command="{Binding ChangePass}" BackgroundColor="Transparent"  Grid.Column="1" HorizontalOptions="End"></Button>
                     </Grid>
                 </Frame>
                 <Button BackgroundColor="#4E4F79" Text=" Continue to the app" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="20" Command="{Binding ProfileToMainApp}" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,50,70,20" CornerRadius="20"></Button>

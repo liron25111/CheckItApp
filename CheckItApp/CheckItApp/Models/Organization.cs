@@ -9,6 +9,7 @@ namespace CheckItApp.Models
     {
         public Organization()
         {
+            AccountOrganizations = new List<AccountOrganization>();
             Classes = new List<Class>();
             StaffMembers = new List<StaffMember>();
         }
@@ -21,12 +22,15 @@ namespace CheckItApp.Models
         public string OrganizationName { get; set; }
         public int MashovSchoolId { get; set; }
       
-        public string MashovPass { get; set; }
 
       
         public virtual StaffMember Manager { get; set; }
       
         public virtual List<Class> Classes { get; set; }
         public virtual List<StaffMember> StaffMembers { get; set; }
+        public virtual StaffMember ManagerNavigation { get; set; }
+
+        public virtual List<AccountOrganization> AccountOrganizations { get; set; }
+
     }
 }
