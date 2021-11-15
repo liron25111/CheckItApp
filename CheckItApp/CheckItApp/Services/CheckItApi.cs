@@ -145,7 +145,7 @@ namespace CheckItApp.Services
         {
             try
             {
-                string uri = $"{this.baseUri}/ResetPass?Pass={Pass}email={email}";
+                string uri = $"{this.baseUri}/ResetPass?Pass={Pass}&email={email}";
                 HttpResponseMessage response = await this.client.GetAsync(uri);
                 if (response.IsSuccessStatusCode)
                 {

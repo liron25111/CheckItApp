@@ -76,6 +76,7 @@ namespace CheckItApp.ViewModels
 
             try
             {
+                
                 Account u = await proxy.ResetPassAsync(NewPassword, account.Email);
                 if (u != null)
                 {
