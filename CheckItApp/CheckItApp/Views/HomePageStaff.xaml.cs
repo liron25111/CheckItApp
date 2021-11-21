@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace CheckItApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePage : ContentPage
+    public partial class HomePageStaff : ContentPage
     {
-        public HomePage()
+        public HomePageStaff()
         {
             InitializeComponent();
         }

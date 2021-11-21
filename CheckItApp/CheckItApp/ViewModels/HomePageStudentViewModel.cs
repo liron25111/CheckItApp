@@ -9,8 +9,7 @@ using Xamarin.Forms;
 
 namespace CheckItApp.ViewModels
 {
-    class ProfilePageViewModel : BaseViewModel
-
+    class HomePageStudentViewModel :BaseViewModel
     {
         public event Action<Page> Push;
 
@@ -30,25 +29,6 @@ namespace CheckItApp.ViewModels
                     OnPropertyChanged();
                 }
             }
-        }
-
-        public ICommand ProfileToMainApp { get; set; }// login Command
-        public ICommand ChangePass { get; set; }
-        public ProfilePageViewModel()
-        {
-            Account = ((App)App.Current).CurrentUser;
-            ProfileToMainApp = new Command(PushToApp);
-            ChangePass = new Command(ResetPass);
-        }
-        public void PushToApp()
-        {
-            Push?.Invoke(new CheckItApp.Views.HomePageStudent());
-
-        }
-        public void ResetPass()
-        {
-            Push?.Invoke(new CheckItApp.Views.ResetPasswordPage());
-
         }
     }
 }

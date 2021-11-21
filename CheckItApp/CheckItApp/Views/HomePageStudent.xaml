@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckItApp.Views.HomePageStudent">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#011724" Offset="0.1">
+
+                    </GradientStop>
+                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </StackLayout.Background>
+            <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
+
+
+            <Label Text="Hello"  HorizontalOptions="StartAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0"  ></Label>
+            <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="Center" ></Label>
+            <Label Text="Recently Assigned Forms"  Style="{Binding Labels}" FontSize="20"></Label>
+            <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
+                <StackLayout>
+                    
+                    
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
