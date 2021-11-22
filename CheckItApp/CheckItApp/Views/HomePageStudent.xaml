@@ -24,6 +24,20 @@
                     
                 </StackLayout>
             </Frame>
+            <Frame BackgroundColor="#E9E9E9"  HeightRequest="50" VerticalOptions="EndAndExpand">
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="Transparent" ImageSource="AccountIcon.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding EditButtonCommand}" Grid.Row="0" Grid.Column="1"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="GroupIcon.png" Command="{Binding GroupButtonCommand}" Grid.Row="0" Grid.Column="2"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="3"></Button>
+                </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
