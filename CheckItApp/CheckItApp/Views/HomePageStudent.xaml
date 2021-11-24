@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheckItApp.Views.HomePageStudent">
+             x:Class="CheckItApp.Views.HomePageStudent" NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Background>
@@ -14,25 +14,38 @@
             </StackLayout.Background>
             <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
 
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
 
-            <Label Text="Hello"  HorizontalOptions="StartAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0"  ></Label>
-            <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="Center" ></Label>
-            <Label Text="Recently Assigned Forms"  Style="{Binding Labels}" FontSize="20"></Label>
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Text="Hello"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0" Grid.Column="0"  ></Label>
+            <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
+            <Label Text="Recently Assigned Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
             <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
                 <StackLayout>
                     
                     
                 </StackLayout>
             </Frame>
+            <Label Text="Upcoming Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
+            <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
+                <StackLayout>
+
+
+                </StackLayout>
+            </Frame>
             <Frame BackgroundColor="#E9E9E9"  HeightRequest="50" VerticalOptions="EndAndExpand">
-                <Grid >
+                <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
-                    <Button BackgroundColor="Transparent" ImageSource="AccountIcon.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="AccountIcon.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
                     <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding EditButtonCommand}" Grid.Row="0" Grid.Column="1"></Button>
                     <Button BackgroundColor="Transparent" ImageSource="GroupIcon.png" Command="{Binding GroupButtonCommand}" Grid.Row="0" Grid.Column="2"></Button>
                     <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="3"></Button>
