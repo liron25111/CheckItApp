@@ -30,5 +30,23 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+        private Form form;
+
+        public Form Form
+        {
+            get
+            {
+                return form;
+            }
+            set
+            {
+                if (form != value)
+                {
+                    form = value;
+                    OnPropertyChanged();
+                }
+            }
+
+        }
     }
 }
