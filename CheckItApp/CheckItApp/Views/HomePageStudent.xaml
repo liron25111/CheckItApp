@@ -8,7 +8,7 @@
         <DataTemplate x:Key="ItemViewTemplate">
             <sho:DraggableViewCell x:Name="DraggableViewCell">
                 <ContentView>
-                    
+                    <Label></Label>
                 </ContentView>
             </sho:DraggableViewCell>
         </DataTemplate>
