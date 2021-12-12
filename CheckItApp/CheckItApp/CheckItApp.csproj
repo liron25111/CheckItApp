@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="MailKit" Version="2.15.0" />
+    <PackageReference Include="Sharpnado.CollectionView" Version="2.0.0" />
     <PackageReference Include="Sharpnado.Tabs" Version="2.2.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
@@ -28,6 +29,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Views\AllFormsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\CreateForm.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\ForgetPassword1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>

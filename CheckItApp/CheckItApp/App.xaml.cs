@@ -17,6 +17,8 @@ namespace CheckItApp
         {
             InitializeComponent();
 
+            Sharpnado.CollectionView.Initializer.Initialize(true, false);
+
             MainPage = new NavigationPage(new HomePageStudent());
             CurrentUser = null;
             IsDevEnv = true;

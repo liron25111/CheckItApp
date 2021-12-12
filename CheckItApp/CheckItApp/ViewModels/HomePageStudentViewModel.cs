@@ -30,6 +30,34 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+        public Command AccountButtonCommand { protected set; get; }
+        public Command CreateFormCommand { protected set; get; }
+        public Command SendToFormsPageCommand { protected set; get; }
+
+
+        public HomePageStudentViewModel()
+        {
+            AccountButtonCommand = new Command(AccountButton);
+            CreateFormCommand = new Command(CreateForm);
+            SendToFormsPageCommand = new Command(AllFormsPage);
+
+
+        }
+        // פעולות
+        private void CreateForm()
+        {
+            Push?.Invoke(new CheckItApp.Views.CreateForm());
+        }
+        private void AccountButton()
+        {
+            Push?.Invoke(new CheckItApp.Views.ProfilePage());
+        }
+        private void AllFormsPage()
+        {
+            Push?.Invoke(new CheckItApp.Views.AllFormsPage());
+        }
+
+
         private Form form;
 
         public Form Form

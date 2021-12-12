@@ -14,6 +14,8 @@ namespace CheckItApp.Droid
         {
             base.OnCreate(savedInstanceState);
 
+            Sharpnado.CollectionView.Initializer.Initialize(true, true);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());

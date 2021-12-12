@@ -1,7 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sho="http://sharpnado.com"
              x:Class="CheckItApp.Views.HomePageStudent" NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="ItemViewTemplate">
+            <sho:DraggableViewCell x:Name="DraggableViewCell">
+                <ContentView>
+                    
+                </ContentView>
+            </sho:DraggableViewCell>
+        </DataTemplate>
+
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Background>
@@ -14,7 +27,7 @@
             </StackLayout.Background>
             <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
 
-            <Grid >
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -27,13 +40,22 @@
             <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
                 <StackLayout>
                     <Label Text="{Binding Form.Topic}" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
-                    <Label Text="{Binding Form.TimeSend}" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
+                    <Label Text="{Binding Form.TimeSend }" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
 
                 </StackLayout>
             </Frame>
             <Label Text="Upcoming Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
             <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
                 <StackLayout>
+                    <sho:CollectionView Grid.Row="3"
+                                  Margin="-16,8"
+                                  CollectionPadding="8,8"
+                                  ItemSpacing="8"
+                                  CollectionLayout="Carousel"
+                                  ItemsSource="{Binding SillyPeopleLoader.Result}"
+                                        ItemTemplate="{StaticResource ItemViewTemplate}"
+                                  SnapStyle="Center">
+                    </sho:CollectionView>
 
 
                 </StackLayout>
@@ -47,8 +69,8 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Button BackgroundColor="Transparent" ImageSource="AccountIcon.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
-                    <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding EditButtonCommand}" Grid.Row="0" Grid.Column="1"></Button>
-                    <Button BackgroundColor="Transparent" ImageSource="GroupIcon.png" Command="{Binding GroupButtonCommand}" Grid.Row="0" Grid.Column="2"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding CreateFormCommand}" Grid.Row="0" Grid.Column="1"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="GroupIcon.png" Command="{Binding SendToFormsPageCommand}" Grid.Row="0" Grid.Column="2"></Button>
                     <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="3"></Button>
                 </Grid>
             </Frame>
