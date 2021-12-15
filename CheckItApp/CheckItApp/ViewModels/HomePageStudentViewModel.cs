@@ -3,6 +3,7 @@ using CheckItApp.Services;
 using CheckItApp.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -34,13 +35,15 @@ namespace CheckItApp.ViewModels
         public Command CreateFormCommand { protected set; get; }
         public Command SendToFormsPageCommand { protected set; get; }
 
+        public ObservableCollection<Form> FormCollection { protected set; get; }
 
         public HomePageStudentViewModel()
         {
             AccountButtonCommand = new Command(AccountButton);
             CreateFormCommand = new Command(CreateForm);
             SendToFormsPageCommand = new Command(AllFormsPage);
-
+            FormCollection = new ObservableCollection<Form>();
+            FillFormCollection();
 
         }
         // פעולות
@@ -57,6 +60,16 @@ namespace CheckItApp.ViewModels
             Push?.Invoke(new CheckItApp.Views.AllFormsPage());
         }
 
+        private async void FillFormCollection()
+        {
+            int clientId = ((App)App.Current).CurrentUser.Id;
+            CheckItApi api = CheckItApi.CreateProxy();
+            List<Form> forms = await api.GetForms(clientId);
+            foreach(Form f in forms)
+            {
+                FormCollection.Add(f);
+            }
+        }
 
         private Form form;
 

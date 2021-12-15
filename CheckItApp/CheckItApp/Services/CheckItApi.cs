@@ -85,6 +85,34 @@ namespace CheckItApp.Services
        
     }
 
+        public async Task<List<Form>> GetForms(int clientId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetForms?clientId={clientId}");
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Form> forms = JsonSerializer.Deserialize<List<Form>>(jsonContent, options);
+                    return forms;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         public async Task<Account> LoginAsync(string email, string pass)
         {
             try

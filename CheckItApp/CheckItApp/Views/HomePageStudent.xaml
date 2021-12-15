@@ -54,7 +54,8 @@
                                   CollectionLayout="Carousel"
                                   ItemsSource="{Binding SillyPeopleLoader.Result}"
                                         ItemTemplate="{StaticResource ItemViewTemplate}"
-                                  SnapStyle="Center">
+                                  SnapStyle="Center"
+                                    BindingContext="{Binding FormCollection}"    >
                     </sho:CollectionView>
 
 
