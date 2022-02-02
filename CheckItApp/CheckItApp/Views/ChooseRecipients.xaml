@@ -20,7 +20,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
             <Frame WidthRequest="320" CornerRadius="9" BackgroundColor="White" HeightRequest="75" Padding="0">
-                <Button Text="Confirm Tags" Command="{Binding ConfirmAllergens}" BackgroundColor="Transparent" FontSize="Medium" TextTransform="None" />
+                <Button Text="Confirm Tag" Command="{Binding ConfirmAllergens}" BackgroundColor="Transparent" FontSize="Medium" TextTransform="None" />
             </Frame>
         </StackLayout>
     </ContentPage.Content>
