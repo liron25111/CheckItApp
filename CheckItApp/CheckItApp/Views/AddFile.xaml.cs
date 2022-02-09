@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CheckItApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +14,8 @@ namespace CheckItApp.Views
     {
         public AddFile()
         {
+            AddFileViewModel context = new AddFileViewModel();
+            this.BindingContext = context;
             InitializeComponent();
         }
     }

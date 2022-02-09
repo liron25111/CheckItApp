@@ -19,7 +19,7 @@ namespace CheckItApp
 
             Sharpnado.CollectionView.Initializer.Initialize(true, false);
 
-            MainPage = new NavigationPage(new HomePageStudent());
+            MainPage = new NavigationPage(new AddFile());
             CurrentUser = null;
             IsDevEnv = true;
         }
