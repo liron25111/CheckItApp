@@ -7,7 +7,6 @@
             <StackLayout.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#011724" Offset="0.1">
-
                     </GradientStop>
                     <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
                 </LinearGradientBrush>
