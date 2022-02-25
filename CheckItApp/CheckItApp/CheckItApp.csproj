@@ -11,7 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MailKit" Version="3.1.1" />
     <PackageReference Include="Sharpnado.CollectionView" Version="2.0.0" />
     <PackageReference Include="Sharpnado.Tabs" Version="2.2.0" />
     <PackageReference Include="System.Text.Json" Version="6.0.2" />

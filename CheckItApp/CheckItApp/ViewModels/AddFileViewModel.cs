@@ -37,8 +37,8 @@ namespace CheckItApp.ViewModels
             var customFileType =
             new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
             {
-                { DevicePlatform.iOS, new[] { ".xlsx" } }, // or general UTType values
-                { DevicePlatform.Android, new[] { ".xlsx" } },
+                { DevicePlatform.iOS, new[] { "*.xlsx" } }, // or general UTType values
+                { DevicePlatform.Android, new[] { "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" } },
             });
             var options = new PickOptions
             {
@@ -51,6 +51,10 @@ namespace CheckItApp.ViewModels
                 var result = await FilePicker.PickAsync(options);
                 if (result != null)
                 {
+                    CheckItApi proxy = CheckItApi.CreateProxy();
+                    bool uploadFileSuccess = await proxy.UploadFile(result.FullPath, result.FileName);
+                    //if (uploadFileSuccess)
+                        //Account.ProfilePicture = $"{Account.AccountId}.jpg";
                     //Text = $"File Name: {result.FileName}";
                     //if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
                     //    result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
