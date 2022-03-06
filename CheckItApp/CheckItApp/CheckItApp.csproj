@@ -19,6 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\CreateForm.xaml.cs">
+      <DependentUpon>CreateForm.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\HomePageStudent.xaml.cs">
       <DependentUpon>HomePageStudent.xaml</DependentUpon>
     </Compile>
@@ -32,9 +35,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AllFormsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\ChooseRecipients.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CreateForm.xaml">

@@ -231,7 +231,7 @@ namespace CheckItApp.Services
                 var multipartFormDataContent = new MultipartFormDataContent();
                 var fileContent = new ByteArrayContent(File.ReadAllBytes(fullPath));
                 multipartFormDataContent.Add(fileContent, "file", targetFileName);
-                HttpResponseMessage response = await client.PostAsync($"{this.baseUri}/upload-file", multipartFormDataContent);
+                HttpResponseMessage response = await client.PostAsync($"{this.baseUri}/uploadFile", multipartFormDataContent);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;

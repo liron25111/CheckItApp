@@ -12,15 +12,25 @@
                     <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
                 </LinearGradientBrush>
             </StackLayout.Background>
-            <Label Text="New Form" TextColor="White" FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>
+            <Label Text="New Form" TextColor="White"  FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>
             <Label Text="Form Type"></Label>
-            <Entry  Placeholder="Enter Form Type : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="Black" Margin="0,-5"></Entry>
+            <Entry  Placeholder="Enter Form Type : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="White" Margin="0,-5"></Entry>
 
-            <Label Text="Form Subject"></Label>
-            <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="Black" Margin="0,-5"></Entry>
+            <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="White" Margin="0,-5"></Entry>
 
-            <Label Text="Recipients"></Label>
+            <SearchBar Placeholder="Add Recipients "
+           CancelButtonColor="Red"
+           PlaceholderColor="White"
+           TextColor="White"
+           TextTransform="Lowercase"
+           HorizontalTextAlignment="Center"
+           FontSize="Medium"
+           FontAttributes="Italic" />
             
+
+            <Label Text="Add File" TextColor="White" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>
+            <Button BackgroundColor="#4E4F79"   Text="Add File" Command="{Binding AddFileCommand}" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="15" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
