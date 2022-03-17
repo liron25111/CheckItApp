@@ -25,7 +25,8 @@
            TextTransform="Lowercase"
            HorizontalTextAlignment="Center"
            FontSize="Medium"
-           FontAttributes="Italic" />
+           FontAttributes="Italic"
+                       Text="{Binding Text}"/>
             
 
             <Label Text="Add File" TextColor="White" FontSize="15" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>

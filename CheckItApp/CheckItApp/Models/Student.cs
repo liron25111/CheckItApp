@@ -9,17 +9,17 @@ namespace CheckItApp.Models
     {
         public Student()
         {
-            ClientsInGroups = new List<ClientsInGroup>();
+            ClientsInGroups = new HashSet<ClientsInGroup>();
         }
 
-      
+        
         public int Id { get; set; }
-        public int ParentId { get; set; }
        
         public string Name { get; set; }
 
        
-        public virtual Account Parent { get; set; }
-        public virtual List<ClientsInGroup> ClientsInGroups { get; set; }
+        public virtual Account IdNavigation { get; set; }
+      
+        public virtual ICollection<ClientsInGroup> ClientsInGroups { get; set; }
     }
 }

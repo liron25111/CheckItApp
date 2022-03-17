@@ -82,8 +82,8 @@ namespace CheckItApp.Services
                 Console.WriteLine(e.Message);
                 return false;
             }
-       
-    }
+
+        }
 
         public async Task<List<Form>> GetForms(int clientId)
         {
@@ -167,7 +167,7 @@ namespace CheckItApp.Services
                 return null;
             }
         }
-        
+
 
         public async Task<Account> ResetPassAsync(string Pass, String email)
         {
@@ -231,7 +231,8 @@ namespace CheckItApp.Services
                 var multipartFormDataContent = new MultipartFormDataContent();
                 var fileContent = new ByteArrayContent(File.ReadAllBytes(fullPath));
                 multipartFormDataContent.Add(fileContent, "file", targetFileName);
-                HttpResponseMessage response = await client.PostAsync($"{this.baseUri}/uploadFile", multipartFormDataContent);
+
+                HttpResponseMessage response = await client.PostAsync($"{this.baseUri}/UploadExcel", multipartFormDataContent);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;
@@ -257,6 +258,7 @@ namespace CheckItApp.Services
             this.baseUri = baseUri;
         }
 
-       
+
     }
 }
+
