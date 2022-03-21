@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using CheckItApp.Services;
 using CheckItApp.Models;
 using Xamarin.Essentials;
+using System.Collections.ObjectModel;
 
 namespace CheckItApp.ViewModels
 {
@@ -31,6 +32,7 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+        
         public Command AddFileCommand => new Command(() => AddFile());
         public async Task<FileResult> AddFile()
         {
@@ -75,7 +77,114 @@ namespace CheckItApp.ViewModels
         }
         public CreateFormViewModel()
         {
-
+            rest = new List<Class>();
+            Classes = new ObservableCollection<Class>();
+            Text = string.Empty;
+            this.onStart += async (s, e) =>
+            {
+                CheckItApi api = CheckItApi.CreateProxy();
+                rest = await api.GetClassesAsync();
+            };
         }
+        
+        #region recipents
+        #region properties
+        private string lastText;
+        private string text;
+        public string Text
+        {
+            get
+            {
+                return text;
+            }
+            set
+            {
+                if (text != value)
+                {
+                    lastText = text;
+                    text = value;
+                    OnPropertyChanged();
+                    textChanged();
+                }
+            }
+        }
+        private List<Class> rest;
+        private ObservableCollection<Class> classes;
+        public ObservableCollection<Class> Classes
+        {
+            get
+            {
+                return classes;
+            }
+            set
+            {
+                if(classes != value)
+                {
+                    classes = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        #endregion
+        #region functions
+        private void textChanged()
+        {
+            if(text == string.Empty)
+            {
+                foreach(Class c in Classes)
+                {
+                    Classes.Remove(c);
+                    rest.Add(c);
+                }
+            }
+            else
+            {
+                if(lastText == string.Empty)
+                {
+                    foreach(Class c in rest)
+                    {
+                        if (c.ClassName.StartsWith(text))
+                        {
+                            Classes.Add(c);
+                            rest.Remove(c);
+                        }
+                    }
+                }
+                else
+                {
+                    if(text.Length > lastText.Length)
+                    {
+                        foreach (Class c in Classes)
+                        {
+                            if (!c.ClassName.StartsWith(text))
+                            {
+                                rest.Add(c);
+                                Classes.Remove(c);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        foreach(Class c in rest)
+                        {
+                            if (c.ClassName.StartsWith(text))
+                            {
+                                Classes.Add(c);
+                                rest.Remove(c);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public virtual void OnStart(EventArgs e)
+        {
+            onStart?.Invoke(this, e);
+        }
+        #endregion
+        #region events
+        private event EventHandler onStart;
+        #endregion
+        #endregion
     }
 }

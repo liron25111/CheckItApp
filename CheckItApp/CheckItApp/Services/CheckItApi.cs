@@ -196,7 +196,7 @@ namespace CheckItApp.Services
                 return null;
             }
         }
-        public async Task<bool> ForgotPassword(string Email)
+        public async Task<List<Class>> ForgotPassword(string Email)
         {
             try
             {
@@ -209,18 +209,18 @@ namespace CheckItApp.Services
                         PropertyNameCaseInsensitive = true
                     };
                     string content = await response.Content.ReadAsStringAsync();
-                    bool b = JsonSerializer.Deserialize<bool>(content, options);
-                    return b;
+                   List<Class> classes = JsonSerializer.Deserialize<List<Class>>(content, options);
+                    return classes;
                 }
                 else
                 {
-                    return false;
+                    return null;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return false;
+                return null;
             }
         }
 
@@ -244,6 +244,33 @@ namespace CheckItApp.Services
             {
                 Console.WriteLine(e.Message);
                 return false;
+            }
+        }
+        public async Task<List<Class>> GetClassesAsync()
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/GetClasses";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Class> classes = JsonSerializer.Deserialize<List<Class>>(content, options);
+                    return classes;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
             }
         }
 

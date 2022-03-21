@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CheckItApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,13 @@ namespace CheckItApp.Views
         public CreateForm()
         {
             InitializeComponent();
+            this.BindingContext = new CreateFormViewModel();
         }
+        protected virtual void OnAppearing()
+        {
+            ((CreateFormViewModel)this.BindingContext).OnStart(EventArgs.Empty);
+        }
+
+
     }
 }
