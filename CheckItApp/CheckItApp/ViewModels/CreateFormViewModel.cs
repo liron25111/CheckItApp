@@ -75,6 +75,16 @@ namespace CheckItApp.ViewModels
 
             return null;
         }
+        private DateTime tripdate;
+        public DateTime TripDate
+        {
+            get { return tripdate; }
+            set
+            {
+                tripdate = value;
+                OnPropertyChanged("TripDate");
+            }
+        }
         public CreateFormViewModel()
         {
             rest = new List<Class>();

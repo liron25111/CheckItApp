@@ -196,7 +196,7 @@ namespace CheckItApp.Services
                 return null;
             }
         }
-        public async Task<List<Class>> ForgotPassword(string Email)
+        public async Task<bool> ForgotPassword(string Email)
         {
             try
             {
@@ -209,18 +209,18 @@ namespace CheckItApp.Services
                         PropertyNameCaseInsensitive = true
                     };
                     string content = await response.Content.ReadAsStringAsync();
-                   List<Class> classes = JsonSerializer.Deserialize<List<Class>>(content, options);
-                    return classes;
+                    bool b = JsonSerializer.Deserialize<bool>(content, options);
+                    return b;
                 }
                 else
                 {
-                    return null;
+                    return false;
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return null;
+                return false;
             }
         }
 

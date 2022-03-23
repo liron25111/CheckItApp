@@ -15,6 +15,8 @@ namespace CheckItApp.ViewModels
 {
     class AddFileViewModel : BaseViewModel
     {
+        public event Action<Page> Push;
+
         private string error;
         public string Error// get eror
         {
@@ -53,8 +55,19 @@ namespace CheckItApp.ViewModels
                 {
                     CheckItApi proxy = CheckItApi.CreateProxy();
                     bool uploadFileSuccess = await proxy.UploadFile(result.FullPath, result.FileName);
+                    if(uploadFileSuccess)
+                    {
+                        await App.Current.MainPage.DisplayAlert("Upload Success", "Your file has been successfully uploaded to the server!", "Ok");
+                        Push?.Invoke(new CheckItApp.Views.HomePageStaff());
+
+                    }
+                    else
+                    {
+                        await App.Current.MainPage.DisplayAlert("Upload Failed", "There was a problem uploading your file, try again later", "Ok");
+
+                    }
                     //if (uploadFileSuccess)
-                        //Account.ProfilePicture = $"{Account.AccountId}.jpg";
+                    //Account.ProfilePicture = $"{Account.AccountId}.jpg";
                     //Text = $"File Name: {result.FileName}";
                     //if (result.FileName.EndsWith("jpg", StringComparison.OrdinalIgnoreCase) ||
                     //    result.FileName.EndsWith("png", StringComparison.OrdinalIgnoreCase))
