@@ -19,6 +19,20 @@
             <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormSubject}" TextColor="White" Margin="0,-5"></Entry>
             <Label Text="Trip Date" TextColor="White" FontSize="20"></Label>
             <DatePicker Date="{Binding TripDate}"></DatePicker>
+
+            <Label Text="Recipients" />
+            <CollectionView ItemsSource="{Binding SelectedClasses}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding ClassName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
             <SearchBar Placeholder="Add Recipients "
            CancelButtonColor="Red"
            PlaceholderColor="White"
@@ -28,6 +42,18 @@
            FontSize="Medium"
            FontAttributes="Italic"
                        Text="{Binding Text}"/>
+
+            <CollectionView ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding ClassSelectedCommand}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding ClassName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             
             <Label Text="Form Body" TextColor="White" FontSize="20"></Label>
             <Editor BackgroundColor="White" AutoSize="TextChanges" HeightRequest="100" Text="{Binding FormText}"  ></Editor>

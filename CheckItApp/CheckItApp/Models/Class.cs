@@ -18,7 +18,7 @@ namespace CheckItApp.Models
         public int StaffMemberOfGroup { get; set; }
      
         public int GroupId { get; set; }
-       
+        
         public string ClassYear { get; set; }
 
         

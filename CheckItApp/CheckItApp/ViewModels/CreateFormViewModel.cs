@@ -76,6 +76,28 @@ namespace CheckItApp.ViewModels
 
             return null;
         }
+
+        public Command ClassSelectedCommand => new Command(() => ClassSelected());
+        private void ClassSelected()
+        {
+            if (SelectedClass != null)
+            {
+                SelectedClasses.Add(SelectedClass);
+                Classes.Remove(SelectedClass);
+            }
+        }
+
+        private Class selectedClass;
+        public Class SelectedClass
+        {
+            get { return selectedClass; }
+            set
+            {
+                selectedClass = value;
+                OnPropertyChanged("SelectedClass");
+            }
+        }
+
         private DateTime tripdate;
         public DateTime TripDate
         {
@@ -185,6 +207,22 @@ namespace CheckItApp.ViewModels
                 if(classes != value)
                 {
                     classes = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private ObservableCollection<Class> selectedClasses;
+        public ObservableCollection<Class> SelectedClasses
+        {
+            get
+            {
+                return selectedClasses;
+            }
+            set
+            {
+                if (selectedClasses != value)
+                {
+                    selectedClasses = value;
                     OnPropertyChanged();
                 }
             }
