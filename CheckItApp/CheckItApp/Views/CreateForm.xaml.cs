@@ -16,7 +16,9 @@ namespace CheckItApp.Views
         public CreateForm()
         {
             InitializeComponent();
-            this.BindingContext = new CreateFormViewModel();
+            CreateFormViewModel Lvm = new CreateFormViewModel();
+            BindingContext = Lvm;
+            Lvm.Push += (p) => Navigation.PushAsync(p);
         }
         protected virtual void OnAppearing()
         {

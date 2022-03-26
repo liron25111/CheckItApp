@@ -32,7 +32,8 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
-        
+        public event Action<Page> Push;
+
         public Command AddFileCommand => new Command(() => AddFile());
         public async Task<FileResult> AddFile()
         {
@@ -83,6 +84,59 @@ namespace CheckItApp.ViewModels
             {
                 tripdate = value;
                 OnPropertyChanged("TripDate");
+            }
+        }
+
+        private string formtype;
+        public string FormType // get FormType
+        {
+            get
+            {
+                return formtype;
+            }
+            set
+            {
+                if (formtype != value)
+                {
+                    formtype = value;
+                    OnPropertyChanged("FormType");
+                }
+            }
+        }
+
+        private string formsubject;
+
+        public string FormSubject // get FormType
+        {
+            get
+            {
+                return formsubject;
+            }
+            set
+            {
+                if (formsubject != value)
+                {
+                    formsubject = value;
+                    OnPropertyChanged("FormSubject");
+                }
+            }
+        }
+
+        private string formtext;
+
+        public string FormText // get FormType
+        {
+            get
+            {
+                return formtext;
+            }
+            set
+            {
+                if (formtext != value)
+                {
+                    formtext = value;
+                    OnPropertyChanged("FormText");
+                }
             }
         }
         public CreateFormViewModel()

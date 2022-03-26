@@ -26,7 +26,6 @@
                 </LinearGradientBrush>
             </StackLayout.Background>
             <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
-
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>

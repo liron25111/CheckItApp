@@ -16,9 +16,9 @@
             <Label Text="Form Type" TextColor="White" FontSize="20"></Label>
             <Entry  Placeholder="Enter Form Type : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="White" Margin="0,-5"></Entry>
             <Label Text="Form Subject" TextColor="White" FontSize="20"></Label>
-            <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="White" Margin="0,-5"></Entry>
+            <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormSubject}" TextColor="White" Margin="0,-5"></Entry>
             <Label Text="Trip Date" TextColor="White" FontSize="20"></Label>
-            <DatePicker Date="{Binding TripDate}"> </DatePicker>
+            <DatePicker Date="{Binding TripDate}"></DatePicker>
             <SearchBar Placeholder="Add Recipients "
            CancelButtonColor="Red"
            PlaceholderColor="White"
@@ -30,7 +30,7 @@
                        Text="{Binding Text}"/>
             
             <Label Text="Form Body" TextColor="White" FontSize="20"></Label>
-            <Editor BackgroundColor="White" AutoSize="TextChanges" HeightRequest="100" ></Editor>
+            <Editor BackgroundColor="White" AutoSize="TextChanges" HeightRequest="100" Text="{Binding FormText}"  ></Editor>
             
         </StackLayout>
     </ContentPage.Content>
