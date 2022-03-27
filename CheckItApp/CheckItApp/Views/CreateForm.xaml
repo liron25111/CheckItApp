@@ -3,37 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CheckItApp.Views.CreateForm">
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <GradientStop Color="#011724" Offset="0.1">
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#011724" Offset="0.1">
 
-                    </GradientStop>
-                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
-                </LinearGradientBrush>
-            </StackLayout.Background>
-            <Label Text="New Form" TextColor="White"  FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>
-            <Label Text="Form Type" TextColor="White" FontSize="20"></Label>
-            <Entry  Placeholder="Enter Form Type : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="White" Margin="0,-5"></Entry>
-            <Label Text="Form Subject" TextColor="White" FontSize="20"></Label>
-            <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormSubject}" TextColor="White" Margin="0,-5"></Entry>
-            <Label Text="Trip Date" TextColor="White" FontSize="20"></Label>
-            <DatePicker Date="{Binding TripDate}"></DatePicker>
+                        </GradientStop>
+                        <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                    </LinearGradientBrush>
+                </StackLayout.Background>
+                <Label Text="New Form" TextColor="White"  FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>
+                <Label Text="Form Type" TextColor="White" FontSize="20"></Label>
+                <Entry  Placeholder="Enter Form Type : " PlaceholderColor="#B2B2B2" Text="{Binding FormType}" TextColor="White" Margin="0,-5"></Entry>
+                <Label Text="Form Subject" TextColor="White" FontSize="20"></Label>
+                <Entry  Placeholder="Enter Form Subject : " PlaceholderColor="#B2B2B2" Text="{Binding FormSubject}" TextColor="White" Margin="0,-5"></Entry>
+                <Label Text="Trip Date" TextColor="White" FontSize="20"></Label>
+                <DatePicker Date="{Binding TripDate}"></DatePicker>
 
-            <Label Text="Recipients" />
-            <CollectionView ItemsSource="{Binding SelectedClasses}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding ClassName}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <Label Text="Recipients" />
+                <CollectionView ItemsSource="{Binding SelectedClasses}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding ClassName}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-            <SearchBar Placeholder="Add Recipients "
+                <SearchBar Placeholder="Add Recipients "
            CancelButtonColor="Red"
            PlaceholderColor="White"
            TextColor="White"
@@ -43,21 +44,23 @@
            FontAttributes="Italic"
                        Text="{Binding Text}"/>
 
-            <CollectionView ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding ClassSelectedCommand}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout>
-                                <Label Text="{Binding ClassName}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            
-            <Label Text="Form Body" TextColor="White" FontSize="20"></Label>
-            <Editor BackgroundColor="White" AutoSize="TextChanges" HeightRequest="100" Text="{Binding FormText}"  ></Editor>
-            
-        </StackLayout>
+                <CollectionView ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding ClassSelectedCommand}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding ClassName}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Label Text="Form Body" TextColor="White" FontSize="20"></Label>
+                <Editor BackgroundColor="White" AutoSize="TextChanges" HeightRequest="100" Text="{Binding FormText}"  ></Editor>
+
+            </StackLayout>
+        </ScrollView>
+        
     </ContentPage.Content>
 </ContentPage>

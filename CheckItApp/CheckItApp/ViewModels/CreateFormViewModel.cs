@@ -166,11 +166,12 @@ namespace CheckItApp.ViewModels
             rest = new List<Class>();
             Classes = new ObservableCollection<Class>();
             Text = string.Empty;
-            this.onStart += async (s, e) =>
-            {
-                CheckItApi api = CheckItApi.CreateProxy();
-                rest = await api.GetClassesAsync();
-            };
+            LoadClasses();
+        }
+        private async void LoadClasses()
+        {
+            CheckItApi api = CheckItApi.CreateProxy();
+            rest = await api.GetClassesAsync();
         }
         
         #region recipents

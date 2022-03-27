@@ -264,13 +264,13 @@ namespace CheckItApp.Services
                 }
                 else
                 {
-                    return null;
+                    return new List<Class>();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return null;
+                return new List<Class>();
             }
         }
 

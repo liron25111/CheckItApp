@@ -15,13 +15,14 @@ namespace CheckItApp
 
         public App()
         {
+            IsDevEnv = true;
+
             InitializeComponent();
 
             Sharpnado.CollectionView.Initializer.Initialize(true, false);
 
             MainPage = new NavigationPage(new AddFile());
             CurrentUser = null;
-            IsDevEnv = true;
         }
 
         protected override void OnStart()
