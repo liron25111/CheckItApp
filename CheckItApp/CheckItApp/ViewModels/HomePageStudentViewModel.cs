@@ -64,11 +64,43 @@ namespace CheckItApp.ViewModels
         {
             int clientId = ((App)App.Current).CurrentUser.Id;
             CheckItApi api = CheckItApi.CreateProxy();
-            List<Form> forms = await api.GetForms(clientId);
-            foreach(Form f in forms)
+            //List<Form> forms = await api.GetForms(clientId);
+            List<Form> forms = FillFormsDemo();
+            foreach (Form f in forms)
             {
                 FormCollection.Add(f);
             }
+        }
+
+        private List<Form> FillFormsDemo()
+        {
+            List<Form> forms = new List<Form>();
+
+            forms.Add(new Form()
+            {
+                FormType = "Trip",
+                Topic = "Checkpoint Trip",
+                MassageBody = "Please sign this",
+                Time = DateTime.Now.TimeOfDay
+            });
+
+            forms.Add(new Form()
+            {
+                FormType = "Hike",
+                Topic = "Ramat HaGolan",
+                MassageBody = "Please sign this",
+                Time = DateTime.Now.TimeOfDay
+            });
+
+            forms.Add(new Form()
+            {
+                FormType = "Fun",
+                Topic = "Magic Kass",
+                MassageBody = "Please sign this",
+                Time = DateTime.Now.TimeOfDay
+            });
+
+            return forms;
         }
 
         private Form form;

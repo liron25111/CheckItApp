@@ -35,31 +35,22 @@
             </Grid>
             <Label Text="Hello"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0" Grid.Column="0"  ></Label>
             <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
-            <Label Text="Recently Assigned Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
-            <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
-                <StackLayout>
-                    <Label Text="{Binding Form.Topic}" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
-                    <Label Text="{Binding Form.TimeSend }" TextColor="White" FontSize="30"  HorizontalOptions="Center" Grid.Column="1" ></Label>
+            <Label Text="Recently Assigned Forms + Upcoming Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
+            
+            <CollectionView ItemsSource="{Binding Forms}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
+                            <StackLayout>
+                                <Label Text="{Binding FormType}" TextColor="White" FontSize="30" HorizontalOptions="Center" />
+                                <Label Text="{Binding Topic}" TextColor="White" FontSize="30"  HorizontalOptions="Center" />
+                                <Label Text="{Binding Time}" TextColor="White" FontSize="30"  HorizontalOptions="Center" />
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
-                </StackLayout>
-            </Frame>
-            <Label Text="Upcoming Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
-            <Frame WidthRequest="10" HeightRequest="90" CornerRadius="20" Margin="10,30">
-                <StackLayout>
-                    <sho:CollectionView Grid.Row="3"
-                                  Margin="-16,8"
-                                  CollectionPadding="8,8"
-                                  ItemSpacing="8"
-                                  CollectionLayout="Carousel"
-                                  ItemsSource="{Binding SillyPeopleLoader.Result}"
-                                        ItemTemplate="{StaticResource ItemViewTemplate}"
-                                  SnapStyle="Center"
-                                    BindingContext="{Binding FormCollection}"    >
-                    </sho:CollectionView>
-
-
-                </StackLayout>
-            </Frame>
             <Frame BackgroundColor="#E9E9E9"  HeightRequest="50" VerticalOptions="EndAndExpand">
                 <Grid>
                     <Grid.ColumnDefinitions>
