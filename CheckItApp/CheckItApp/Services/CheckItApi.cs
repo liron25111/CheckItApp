@@ -112,7 +112,33 @@ namespace CheckItApp.Services
                 return null;
             }
         }
+        public async Task<List<Form>> GetFormsStaffMember(int clientId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetFormsStaffMember?clientId={clientId}");
+                if (response.IsSuccessStatusCode)
+                {
 
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Form> forms = JsonSerializer.Deserialize<List<Form>>(jsonContent, options);
+                    return forms;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
         public async Task<Account> LoginAsync(string email, string pass)
         {
             try
@@ -195,8 +221,34 @@ namespace CheckItApp.Services
                 return null;
             }
         }
-
-
+        
+            public async Task<StaffMember> ResetPassStaffMemberAsync(string Pass, String email)
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/ResetPassStaffMember?Pass={Pass}&email={email}";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    StaffMember u = JsonSerializer.Deserialize<StaffMember>(content, options);
+                    return u;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
         public async Task<Account> ResetPassAsync(string Pass, String email)
         {
             try

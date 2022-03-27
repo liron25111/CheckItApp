@@ -1,19 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:sho="http://sharpnado.com"
-             x:Class="CheckItApp.Views.HomeP" NavigationPage.HasNavigationBar="False">
-
-    <ContentPage.Resources>
-        <DataTemplate x:Key="ItemViewTemplate">
-            <sho:DraggableViewCell x:Name="DraggableViewCell">
-                <ContentView>
-                    <Label></Label>
-                </ContentView>
-            </sho:DraggableViewCell>
-        </DataTemplate>
-
-    </ContentPage.Resources>
+             x:Class="CheckItApp.Views.HomePageStaff" NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
         <StackLayout>
@@ -56,12 +44,14 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
 
                     </Grid.ColumnDefinitions>
                     <Button BackgroundColor="Transparent" ImageSource="CodeIcon.png" Command="{Binding AddFilePageCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
-                    <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding CreateFormCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
-                    <Button BackgroundColor="Transparent" ImageSource="Person.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
-                    <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="1"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding CreateFormCommand}" Grid.Row="0" Grid.Column="1"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="Person.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="2"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="3"></Button>
                 </Grid>
             </Frame>
         </StackLayout>

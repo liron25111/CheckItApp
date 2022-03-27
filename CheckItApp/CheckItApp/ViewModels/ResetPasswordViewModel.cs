@@ -46,28 +46,11 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
-        private Account account;
-
-        public Account Account // get Email
-        {
-            get
-            {
-                return account;
-            }
-            set
-            {
-                if (account != value)
-                {
-                    account = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+       
         public ICommand ResetPassword { get; set; }// login Command
             
         public ResetPasswordViewModel()
         {
-            Account = ((App)App.Current).CurrentUser;
             ResetPassword = new Command(ResetPass);
         }
         private async void ResetPass()
@@ -76,18 +59,36 @@ namespace CheckItApp.ViewModels
 
             try
             {
-                
-                Account u = await proxy.ResetPassAsync(NewPassword, account.Email);
-                if (u != null)
+                if(((App)App.Current).CurrentUser != null)
                 {
-                    ((App)App.Current).CurrentUser = u;
-                    Push?.Invoke(new CheckItApp.Views.LoginPage());
+                    Account u = await proxy.ResetPassAsync(NewPassword, (((App)App.Current).CurrentUser).Email);
+                    if(u != null)
+                    {
+                        ((App)App.Current).CurrentUser = u;
+                        Push?.Invoke(new CheckItApp.Views.LoginPage());
+                    }
+                    else
+                    {
+                        Error = "This Password Doesn't correctly Please try again";
+
+                    }
+
                 }
                 else
                 {
-                    Error = "This Password Doesn't correctly Please try again";
+                    StaffMember u = await proxy.ResetPassStaffMemberAsync(NewPassword, (((App)App.Current).CurrentUser2).Email);
+                    if (u != null)
+                    {
+                        ((App)App.Current).CurrentUser2 = u;
+                        Push?.Invoke(new CheckItApp.Views.LoginPage());
+                    }
+                    else
+                    {
+                        Error = "This Password Doesn't correctly Please try again";
 
+                    }
                 }
+
             }
 
             catch (Exception)

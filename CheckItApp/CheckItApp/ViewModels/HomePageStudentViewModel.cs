@@ -39,6 +39,7 @@ namespace CheckItApp.ViewModels
 
         public HomePageStudentViewModel()
         {
+            Account = ((App)App.Current).CurrentUser;
             AccountButtonCommand = new Command(AccountButton);
             CreateFormCommand = new Command(CreateForm);
             SendToFormsPageCommand = new Command(AllFormsPage);

@@ -53,7 +53,7 @@ namespace CheckItApp.ViewModels
         }
         private void AccountButton()
         {
-            Push?.Invoke(new CheckItApp.Views.ProfilePage());
+            Push?.Invoke(new CheckItApp.Views.ProfilePageStaff());
         }
         private void AddFilePage()
         {
@@ -62,7 +62,7 @@ namespace CheckItApp.ViewModels
 
         private async void FillFormCollection()
         {
-            int clientId = ((App)App.Current).CurrentUser.Id;
+            int clientId = ((App)App.Current).CurrentUser2.Id;
             CheckItApi api = CheckItApi.CreateProxy();
             //List<Form> forms = await api.GetForms(clientId);
             List<Form> forms = FillFormsDemo();
@@ -99,6 +99,7 @@ namespace CheckItApp.ViewModels
                 MassageBody = "Please sign this",
                 Time = DateTime.Now.TimeOfDay
             });
+
 
             return forms;
         }

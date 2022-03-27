@@ -15,9 +15,9 @@ namespace CheckItApp.Views
         public ProfilePage()
         {
             InitializeComponent();
-            ProfilePageViewModel Lvm = new ProfilePageViewModel();
-            BindingContext = Lvm;
-            Lvm.Push += (p) => Navigation.PushAsync(p);
+            ProfilePageViewModel vm = new ProfilePageViewModel(); ;
+            vm.Push += (p) => Navigation.PushAsync(p);
+            BindingContext = vm;
         }
 
         private void ImageButton_Clicked(object sender, EventArgs e)

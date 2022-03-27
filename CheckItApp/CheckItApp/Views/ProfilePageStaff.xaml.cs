@@ -10,14 +10,14 @@ using Xamarin.Forms.Xaml;
 namespace CheckItApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomePageStaff : ContentPage
+    public partial class ProfilePageStaff : ContentPage
     {
-        public HomePageStaff()
+        public ProfilePageStaff()
         {
             InitializeComponent();
-            HomePageStaffViewModel Lvm = new HomePageStaffViewModel();
-            BindingContext = Lvm;
-            Lvm.Push += (p) => Navigation.PushAsync(p);
+            ProfilePageStaffViewModel vm = new ProfilePageStaffViewModel(); ;
+            vm.Push += (p) => Navigation.PushAsync(p);
+            BindingContext = vm;
         }
     }
 }
