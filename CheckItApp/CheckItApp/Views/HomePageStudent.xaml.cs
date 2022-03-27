@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using CheckItApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +14,10 @@ namespace CheckItApp.Views
     {
         public HomePageStudent()
         {
+          
+            HomePageStudentViewModel Lvm = new HomePageStudentViewModel();
+            BindingContext = Lvm;
+            Lvm.Push += (p) => Navigation.PushAsync(p);
             InitializeComponent();
         }
     }

@@ -44,8 +44,8 @@ namespace CheckItApp.ViewModels
             SendToFormsPageCommand = new Command(AllFormsPage);
             FormCollection = new ObservableCollection<Form>();
             FillFormCollection();
-
         }
+
         // פעולות
         private void CreateForm()
         {
@@ -90,7 +90,7 @@ namespace CheckItApp.ViewModels
                 Topic = "Ramat HaGolan",
                 MassageBody = "Please sign this",
                 Time = DateTime.Now.TimeOfDay
-            });
+            }); 
 
             forms.Add(new Form()
             {

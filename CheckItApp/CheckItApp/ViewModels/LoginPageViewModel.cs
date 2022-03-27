@@ -29,6 +29,23 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+        private bool isteacher;
+        public bool IsTeacher// get eror
+        {
+            get
+            {
+                return isteacher;
+            }
+            set
+            {
+                if (isteacher != value)
+                {
+                    isteacher = value;
+                    OnPropertyChanged("IsTeacher");
+                }
+            }
+        }
+
 
         public string Email // get Email
         {
@@ -91,26 +108,53 @@ namespace CheckItApp.ViewModels
         private async void Login()
         {
             CheckItApi proxy = CheckItApi.CreateProxy();
-
-            try
+            if (isteacher == false)
             {
-                Account u = await proxy.LoginAsync(Email, Password);
-                if (u != null)
+                try
                 {
-                    ((App)App.Current).CurrentUser = u;
-                    Push?.Invoke(new CheckItApp.Views.ProfilePage());
-                }
-                else
-                {
-                    Error = "This Account Doesn't Exist";
+                    Account u = await proxy.LoginAsync(Email, Password);
 
+                    if (u != null)
+                    {
+                        ((App)App.Current).CurrentUser = u;
+                        Push?.Invoke(new CheckItApp.Views.HomePageStudent());
+                    }
+                    else
+                    {
+                        Error = "This Account Doesn't Exist";
+
+                    }
+                }
+
+                catch (Exception)
+                {
+                    Error = "Something went Wrong";
                 }
             }
-            
-            catch (Exception)
+            else
             {
-                Error = "Something went Wrong";
-            }
+                    try
+                    {
+                        StaffMember u = await proxy.Login(Email, Password);
+                        if (u != null)
+                        {
+                            ((App)App.Current).CurrentUser2 = u;
+                            Push?.Invoke(new CheckItApp.Views.HomePageStaff());
+                        }
+                        else
+                        {
+                            Error = "This Account Doesn't Exist";
+
+                        }
+                    }
+
+                    catch (Exception)
+                    {
+                        Error = "Something went Wrong";
+                    }
+                }
+
+          
         }
     }
 }

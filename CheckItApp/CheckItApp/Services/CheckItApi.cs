@@ -141,6 +141,34 @@ namespace CheckItApp.Services
             }
         }
 
+        public async Task<StaffMember> Login(string email, string pass)
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/Login2?email={email}&pass={pass}";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    StaffMember u = JsonSerializer.Deserialize<StaffMember>(content, options);
+                    return u;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
         public async Task<bool?> EmailExists(string email)
         {
             try

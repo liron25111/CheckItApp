@@ -1,17 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheckItApp.Views.HomePageStaff">
+             xmlns:sho="http://sharpnado.com"
+             x:Class="CheckItApp.Views.HomeP" NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <DataTemplate x:Key="ItemViewTemplate">
+            <sho:DraggableViewCell x:Name="DraggableViewCell">
+                <ContentView>
+                    <Label></Label>
+                </ContentView>
+            </sho:DraggableViewCell>
+        </DataTemplate>
+
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
                     <GradientStop Color="#011724" Offset="0.1">
+
                     </GradientStop>
                     <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
                 </LinearGradientBrush>
             </StackLayout.Background>
-            <Label></Label>
+            <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <Label Text="Welcome! Look at your new forms details"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0" Grid.Column="0"  ></Label>
+
+            <CollectionView ItemsSource="{Binding FormCollection}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightGray">
+                                <StackLayout>
+                                    <Label Text="{Binding FormType}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Topic}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Time}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Frame BackgroundColor="#E9E9E9"  HeightRequest="50" VerticalOptions="EndAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="Transparent" ImageSource="CodeIcon.png" Command="{Binding AddFilePageCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding CreateFormCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="Person.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="1"></Button>
+                </Grid>
+            </Frame>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

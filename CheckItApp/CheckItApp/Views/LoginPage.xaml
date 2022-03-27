@@ -59,8 +59,16 @@
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
+                <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                    <Label Text="I am a Teacher" Grid.Column="0" FontSize="20"  HorizontalOptions="Center"></Label>
+                    <CheckBox Grid.Column="0" HorizontalOptions="End" IsChecked="{Binding IsTeacher}" ></CheckBox>
+                </Grid>
                 <Label Text="{Binding Error} " FontAttributes="Bold"  HorizontalOptions="CenterAndExpand" TextColor="Red" FontSize="Medium" />
-
+          
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

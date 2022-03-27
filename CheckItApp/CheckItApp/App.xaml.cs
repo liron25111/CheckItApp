@@ -12,6 +12,8 @@ namespace CheckItApp
     {
         public static bool IsDevEnv { get; internal set; }
         public Account CurrentUser { get; set; }
+        public StaffMember CurrentUser2 { get; set; }
+
 
         public App()
         {

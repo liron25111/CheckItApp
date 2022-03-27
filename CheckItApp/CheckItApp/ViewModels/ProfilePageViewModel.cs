@@ -40,11 +40,27 @@ namespace CheckItApp.ViewModels
             ProfileToMainApp = new Command(PushToApp);
             ChangePass = new Command(ResetPass);
         }
-        public void PushToApp()
+
+        Account a = ((App) App.Current).CurrentUser;
+        StaffMember u = ((App) App.Current).CurrentUser2;
+
+       
+       public void PushToApp()
         {
-            Push?.Invoke(new CheckItApp.Views.HomePageStudent());
+            if(a!=null)
+            {
+                Push?.Invoke(new CheckItApp.Views.HomePageStudent());
+            }
+            if(u!= null)
+            {
+                Push?.Invoke(new CheckItApp.Views.HomePageStaff());
+
+            }
+
 
         }
+    
+        
         public void ResetPass()
         {
             Push?.Invoke(new CheckItApp.Views.ResetPasswordPage());
