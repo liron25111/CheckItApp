@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CheckItApp.Views.CreateForm"
-             xmlns:models="clr-namespace:CheckItApp.Models">
+             xmlns:models="clr-namespace:CheckItApp.Models"
+             x:Name="thisPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -23,15 +24,33 @@
                 <DatePicker Date="{Binding TripDate}"></DatePicker>
 
                 <Label Text="Recipients" />
-                <CollectionView ItemsSource="{Binding SelectedClasses}" >
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Class">
-                            <Label Text="{Binding ClassName}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <Frame CornerRadius="20" BackgroundColor="White" Margin="20,0">
+                    <StackLayout BindableLayout.ItemsSource="{Binding SelectedClasses}" >
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate x:DataType="models:Class">
+                                <Frame BackgroundColor="LightBlue" CornerRadius="20" HeightRequest="30">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="6*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Image Grid.Column="0" Source="icon_x.png" HorizontalOptions="Start" >
+                                            <Image.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference thisPage}, Path=BindingContext.RemoveSelectedClass}" />
+                                            </Image.GestureRecognizers>
+                                        </Image>
+                                        <Label Grid.Column="1" Text="{Binding ClassName}" HorizontalOptions="End"/>
+                                    </Grid>
+                                </Frame>
+                                
+                                
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </StackLayout>
+                </Frame>
+               
 
-                <SearchBar Placeholder="Add Recipients "
+                <SearchBar Placeholder="Add Recipients " VerticalOptions="Start"
            CancelButtonColor="Red"
            PlaceholderColor="White"
            TextColor="White"
@@ -41,7 +60,7 @@
            FontAttributes="Italic"
                        Text="{Binding Text}"/>
 
-                <CollectionView ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding ClassSelectedCommand}" >
+                <CollectionView VerticalOptions="Start" ItemsSource="{Binding Classes}" SelectionMode="Single" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding Source={x:Reference thisPage}, Path=BindingContext.ClassSelectedCommand}" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Class">
                             <Label Text="{Binding ClassName}"/>

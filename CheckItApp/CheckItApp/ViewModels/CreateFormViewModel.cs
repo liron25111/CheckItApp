@@ -77,14 +77,16 @@ namespace CheckItApp.ViewModels
             return null;
         }
 
-        public Command ClassSelectedCommand => new Command(() => ClassSelected());
+        public Command ClassSelectedCommand => new Command(ClassSelected);
         private void ClassSelected()
         {
             if (SelectedClass != null)
             {
                 SelectedClasses.Add(SelectedClass);
                 Classes.Remove(SelectedClass);
+                SelectedClass = null;
             }
+            
         }
 
         private Class selectedClass;
