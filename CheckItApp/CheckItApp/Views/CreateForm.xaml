@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheckItApp.Views.CreateForm">
+             x:Class="CheckItApp.Views.CreateForm"
+             xmlns:models="clr-namespace:CheckItApp.Models">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -22,14 +23,10 @@
                 <DatePicker Date="{Binding TripDate}"></DatePicker>
 
                 <Label Text="Recipients" />
-                <CollectionView ItemsSource="{Binding SelectedClasses}">
+                <CollectionView ItemsSource="{Binding SelectedClasses}" >
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <Label Text="{Binding ClassName}"/>
-                                </StackLayout>
-                            </ViewCell>
+                        <DataTemplate x:DataType="models:Class">
+                            <Label Text="{Binding ClassName}" />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -44,14 +41,10 @@
            FontAttributes="Italic"
                        Text="{Binding Text}"/>
 
-                <CollectionView ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding ClassSelectedCommand}">
+                <CollectionView ItemsSource="{Binding Classes}" SelectedItem="{Binding SelectedClass}" SelectionChangedCommand="{Binding ClassSelectedCommand}" >
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout>
-                                    <Label Text="{Binding ClassName}"/>
-                                </StackLayout>
-                            </ViewCell>
+                        <DataTemplate x:DataType="models:Class">
+                            <Label Text="{Binding ClassName}"/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

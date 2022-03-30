@@ -165,6 +165,7 @@ namespace CheckItApp.ViewModels
         {
             rest = new List<Class>();
             Classes = new ObservableCollection<Class>();
+            SelectedClasses = new ObservableCollection<Class>();
             Text = string.Empty;
             LoadClasses();
         }
@@ -190,44 +191,14 @@ namespace CheckItApp.ViewModels
                 {
                     lastText = text;
                     text = value;
-                    OnPropertyChanged();
+                    OnPropertyChanged("Text");
                     textChanged();
                 }
             }
         }
         private List<Class> rest;
-        private ObservableCollection<Class> classes;
-        public ObservableCollection<Class> Classes
-        {
-            get
-            {
-                return classes;
-            }
-            set
-            {
-                if(classes != value)
-                {
-                    classes = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        private ObservableCollection<Class> selectedClasses;
-        public ObservableCollection<Class> SelectedClasses
-        {
-            get
-            {
-                return selectedClasses;
-            }
-            set
-            {
-                if (selectedClasses != value)
-                {
-                    selectedClasses = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        public ObservableCollection<Class> Classes { get; set; }
+        public ObservableCollection<Class> SelectedClasses { get; set; }
         #endregion
         #region functions
         private void textChanged()
@@ -236,9 +207,10 @@ namespace CheckItApp.ViewModels
             {
                 foreach(Class c in Classes)
                 {
-                    Classes.Remove(c);
                     rest.Add(c);
                 }
+                foreach (Class c in rest)
+                    Classes.Remove(c);
             }
             else
             {
@@ -249,9 +221,10 @@ namespace CheckItApp.ViewModels
                         if (c.ClassName.StartsWith(text))
                         {
                             Classes.Add(c);
-                            rest.Remove(c);
                         }
                     }
+                    foreach (Class c in Classes)
+                        rest.Remove(c);
                 }
                 else
                 {
@@ -262,9 +235,11 @@ namespace CheckItApp.ViewModels
                             if (!c.ClassName.StartsWith(text))
                             {
                                 rest.Add(c);
-                                Classes.Remove(c);
+
                             }
                         }
+                        foreach (Class c in rest)
+                            Classes.Remove(c);
                     }
                     else
                     {
@@ -273,9 +248,10 @@ namespace CheckItApp.ViewModels
                             if (c.ClassName.StartsWith(text))
                             {
                                 Classes.Add(c);
-                                rest.Remove(c);
                             }
                         }
+                        foreach (Class c in Classes)
+                            rest.Remove(c);
                     }
                 }
             }
