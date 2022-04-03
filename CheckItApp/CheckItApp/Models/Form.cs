@@ -13,19 +13,13 @@ namespace CheckItApp.Models
         }
 
         public string FormType { get; set; }
-      
         public string Topic { get; set; }
-       
         public string MassageBody { get; set; }
         public int StatusOfTheMessage { get; set; }
-      
         public int FormId { get; set; }
         public int GroupId { get; set; }
-        public TimeSpan Time { get; set; }
-
-      
+        public DateTime TripDate { get; set; }
         public virtual Class Group { get; set; }
-      
-        public virtual List<SignForm> SignForms { get; set; }
+        public virtual ICollection<SignForm> SignForms { get; set; }
     }
 }

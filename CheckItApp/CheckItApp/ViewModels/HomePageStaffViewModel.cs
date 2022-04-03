@@ -81,7 +81,7 @@ namespace CheckItApp.ViewModels
                 FormType = "Trip",
                 Topic = "Checkpoint Trip",
                 MassageBody = "Please sign this",
-                Time = DateTime.Now.TimeOfDay
+                TripDate = DateTime.Now
             });
 
             forms.Add(new Form()
@@ -89,7 +89,7 @@ namespace CheckItApp.ViewModels
                 FormType = "Hike",
                 Topic = "Ramat HaGolan",
                 MassageBody = "Please sign this",
-                Time = DateTime.Now.TimeOfDay
+                TripDate = DateTime.Now
             });
 
             forms.Add(new Form()
@@ -97,7 +97,7 @@ namespace CheckItApp.ViewModels
                 FormType = "Fun",
                 Topic = "Magic Kass",
                 MassageBody = "Please sign this",
-                Time = DateTime.Now.TimeOfDay
+                TripDate = DateTime.Now
             });
 
 

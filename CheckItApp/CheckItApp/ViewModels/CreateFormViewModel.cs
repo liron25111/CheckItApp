@@ -96,6 +96,7 @@ namespace CheckItApp.ViewModels
             set
             {
                 selectedClass = value;
+                Text = String.Empty;
                 OnPropertyChanged("SelectedClass");
             }
         }
@@ -163,8 +164,22 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+
+        private bool collectionViewIsVisibleToggle;
+        public bool CollectionViewIsVisibleToggle
+        {
+            get { return collectionViewIsVisibleToggle; }
+            set
+            {
+                collectionViewIsVisibleToggle = value;
+                OnPropertyChanged("CollectionViewIsVisibleToggle");
+            }
+        }
+        private CheckItApi proxy;
         public CreateFormViewModel()
         {
+            CollectionViewIsVisibleToggle = false;
+            proxy = CheckItApi.CreateProxy();
             rest = new List<Class>();
             Classes = new ObservableCollection<Class>();
             SelectedClasses = new ObservableCollection<Class>();
@@ -175,6 +190,53 @@ namespace CheckItApp.ViewModels
         {
             CheckItApi api = CheckItApi.CreateProxy();
             rest = await api.GetClassesAsync();
+        }
+
+        public Command ConfirmForm => new Command(SendForm);
+        private async void SendForm()
+        {
+            bool isValid = true;
+            if(FormText.Length == 0)
+            {
+                isValid = false;
+                await App.Current.MainPage.DisplayAlert("Invalid Form", "The form has to contain a body", "OK");
+            }
+            if(SelectedClasses.Count == 0)
+            {
+                isValid=false;
+                await App.Current.MainPage.DisplayAlert("Invalid Form", "The form has to have at least one recipient", "OK");
+            }
+            if(FormSubject == "")
+            {
+                isValid = false;
+                await App.Current.MainPage.DisplayAlert("Invalid Form", "The form has to have a subject", "OK");
+            }
+            if(FormType == "")
+            {
+                isValid = false;
+                await App.Current.MainPage.DisplayAlert("Invalid Form", "The form has to be of some type", "OK");
+            }
+
+
+            if (isValid)
+            {
+                List<Form> forms = new List<Form>();
+                foreach (Class c in SelectedClasses)
+                {
+                    Form f = new Form()
+                    {
+                        FormType = this.FormType,
+                        MassageBody = this.FormText,
+                        Topic = this.FormSubject,
+                        TripDate = this.TripDate,
+                        StatusOfTheMessage = 0,
+                        GroupId = c.GroupId
+                    };
+                    forms.Add(f);
+                }
+                bool result = await proxy.PostForms(forms);
+            }
+                
         }
         
         #region recipents
@@ -193,6 +255,10 @@ namespace CheckItApp.ViewModels
                 {
                     lastText = text;
                     text = value;
+                    if (text.Length > 0)
+                        CollectionViewIsVisibleToggle = true;
+                    else
+                        CollectionViewIsVisibleToggle = false;
                     OnPropertyChanged("Text");
                     textChanged();
                 }
@@ -220,7 +286,7 @@ namespace CheckItApp.ViewModels
                 {
                     foreach(Class c in rest)
                     {
-                        if (c.ClassName.StartsWith(text))
+                        if (c.ClassName.ToLower().StartsWith(text.ToLower()))
                         {
                             Classes.Add(c);
                         }
@@ -234,7 +300,7 @@ namespace CheckItApp.ViewModels
                     {
                         foreach (Class c in Classes)
                         {
-                            if (!c.ClassName.StartsWith(text))
+                            if (!c.ClassName.ToLower().StartsWith(text.ToLower()))
                             {
                                 rest.Add(c);
 
@@ -247,7 +313,7 @@ namespace CheckItApp.ViewModels
                     {
                         foreach(Class c in rest)
                         {
-                            if (c.ClassName.StartsWith(text))
+                            if (c.ClassName.ToLower().StartsWith(text.ToLower()))
                             {
                                 Classes.Add(c);
                             }
@@ -257,6 +323,14 @@ namespace CheckItApp.ViewModels
                     }
                 }
             }
+            
+        }
+        public Command<Class> DeleteCommand => new Command<Class>(DeleteCommandMethod);
+        private void DeleteCommandMethod(Class c)
+        {
+            SelectedClasses.Remove(c);
+            rest.Add(c);
+            textChanged();
         }
         public virtual void OnStart(EventArgs e)
         {
