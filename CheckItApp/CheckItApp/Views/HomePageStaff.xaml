@@ -29,9 +29,9 @@
                         <StackLayout>
                             <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightGray">
                                 <StackLayout>
-                                    <Label Text="{Binding FormType}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
-                                    <Label Text="{Binding Topic}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
-                                    <Label Text="{Binding Time}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding Topic}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding FormType}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding TripDate, StringFormat='{0:dd/MM/yyy}'}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
                                 </StackLayout>
 
                                 <Frame.GestureRecognizers>
