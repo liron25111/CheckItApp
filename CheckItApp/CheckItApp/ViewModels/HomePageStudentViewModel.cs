@@ -48,6 +48,7 @@ namespace CheckItApp.ViewModels
             FillForms();
         }
 
+        public Command<Form> GoToFormView => new Command<Form>((f) => Push?.Invoke(new FormView(f)));
         private async void FillForms()
         {
             FormCollection.Clear();

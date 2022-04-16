@@ -23,7 +23,7 @@ namespace CheckItApp.Views
 
         protected override void OnAppearing()
         {
-            HomePageStaffViewModel vm = (HomePageStaffViewModel)BindingContext;
+            HomePageStudentViewModel vm = (HomePageStudentViewModel)BindingContext;
             vm.Refresh();
         }
     }

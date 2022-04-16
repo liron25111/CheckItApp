@@ -37,17 +37,20 @@
             <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="CenterAndExpand" Grid.Column="1" ></Label>
             <Label Text="Recently Assigned Forms + Upcoming Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
 
-            <CollectionView ItemsSource="{Binding FormCollection}">
+            <CollectionView x:Name="FormsCVStudent" ItemsSource="{Binding FormCollection}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
-                        <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightGray">
-                            <StackLayout>
-                                <Label Text="{Binding FormType}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
+                            <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightGray">
+                                <StackLayout>
+                                    <Label Text="{Binding FormType}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
                                     <Label Text="{Binding Topic}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
-                                <Label Text="{Binding Time}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
-                            </StackLayout>
-                        </Frame>
+                                    <Label Text="{Binding Time}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
+                                </StackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={Reference FormsCVStudent}, Path=BindingContext.GoToFormView}" CommandParameter="{Binding}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

@@ -31,7 +31,7 @@ namespace CheckItApp.ViewModels
         private string formBody;
         public string FormBody
         {
-            get => FormBody;
+            get => formBody;
             set => SetValue(ref formBody, value);
         }
         private bool signed;
