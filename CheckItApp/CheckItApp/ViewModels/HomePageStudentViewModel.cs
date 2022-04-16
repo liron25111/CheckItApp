@@ -36,7 +36,7 @@ namespace CheckItApp.ViewModels
         public Command SendToFormsPageCommand { protected set; get; }
 
         public ObservableCollection<Form> FormCollection { protected set; get; }
-
+        private CheckItApi proxy;
         public HomePageStudentViewModel()
         {
             Account = ((App)App.Current).CurrentUser;
@@ -44,9 +44,23 @@ namespace CheckItApp.ViewModels
             CreateFormCommand = new Command(CreateForm);
             SendToFormsPageCommand = new Command(AllFormsPage);
             FormCollection = new ObservableCollection<Form>();
-            FillFormCollection();
+            proxy = CheckItApi.CreateProxy();
+            FillForms();
         }
 
+        private async void FillForms()
+        {
+            FormCollection.Clear();
+            List<Form> f = await proxy.GetForms(((App)App.Current).CurrentUser.Id);
+            foreach(Form form in f)
+            {
+                FormCollection.Add(form);
+            }
+        }
+        public void Refresh()
+        {
+            this.FillForms();
+        }
         // פעולות
         private void CreateForm()
         {

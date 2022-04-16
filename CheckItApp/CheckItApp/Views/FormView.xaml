@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckItApp.Views.FormView"
+             xmlns:sho="http://sharpnado.com">
+    
+    <ContentPage.Resources>
+        <DataTemplate x:Key="ItemViewTemplate">
+            <sho:DraggableViewCell x:Name="DraggableViewCell">
+                <ContentView>
+                    <Label></Label>
+                </ContentView>
+            </sho:DraggableViewCell>
+        </DataTemplate>
+
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <ScrollView.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#011724" Offset="0.1">
+
+                    </GradientStop>
+                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </ScrollView.Background>
+            <StackLayout Padding="10">
+            <StackLayout.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <GradientStop Color="#011724" Offset="0.1">
+
+                    </GradientStop>
+                    <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </StackLayout.Background>
+
+            <Label Text="{Binding FormTitle}" TextColor="White" FontSize="24" HorizontalOptions="Center" />
+            <Label TextColor="White" >
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Form Type:  " FontSize="16" />
+                        <Span Text="{Binding FormType}" FontSize="16"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label Text="Recipients" TextColor="White" />
+            <CollectionView HeightRequest="100" IsVisible="False" ItemsSource="{Binding FormGroups}">
+                
+            </CollectionView>
+            <Label Margin="10" Text="FormBody" TextColor="White" FontSize="18"/>
+            <Frame BackgroundColor="White" CornerRadius="20" >
+                <Label Text="{Binding FormBody}" TextColor="Black" FontSize="Body"/>
+            </Frame>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <CheckBox Grid.Column="0" HorizontalOptions="Start" IsChecked="{Binding Signed}" />
+                <Label TextColor="White" Text="By checking this box, you hereby sign this form." VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Start"/>
+            </Grid>
+        </StackLayout>
+        </ScrollView>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -354,7 +354,7 @@ namespace CheckItApp.Services
             }
         }
 
-        public async Task<bool> PostForms(List<Form> forms)
+        public async Task<bool> PostForms(Form form, List<int> classes)
         {
             try
             {
@@ -362,13 +362,12 @@ namespace CheckItApp.Services
                 {
                     PropertyNameCaseInsensitive = true
                 };
-                string json = JsonSerializer.Serialize(forms, options);
-                StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
+                string formSerialized = JsonSerializer.Serialize(form, options);
+                string classesSerialized = JsonSerializer.Serialize(classes, options);
 
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/PostForms?json={json}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/PostForms?formJson={formSerialized}&classesJson={classesSerialized}");
                 if (response.IsSuccessStatusCode)
                 {
-
                     string jsonContent = await response.Content.ReadAsStringAsync();
                     bool b = JsonSerializer.Deserialize<bool>(jsonContent, options);
                     return b;

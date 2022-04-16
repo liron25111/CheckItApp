@@ -220,21 +220,27 @@ namespace CheckItApp.ViewModels
 
             if (isValid)
             {
-                List<Form> forms = new List<Form>();
+                List<int> classes = new List<int>();
+                Form f = new Form()
+                {
+                    FormType = this.FormType,
+                    MassageBody = this.FormText,
+                    Topic = this.FormSubject,
+                    TripDate = this.TripDate,
+                    StatusOfTheMessage = 0,
+                    SentByStaffMemebr = ((App)App.Current).CurrentUser2.Id
+                };
                 foreach (Class c in SelectedClasses)
                 {
-                    Form f = new Form()
-                    {
-                        FormType = this.FormType,
-                        MassageBody = this.FormText,
-                        Topic = this.FormSubject,
-                        TripDate = this.TripDate,
-                        StatusOfTheMessage = 0,
-                        GroupId = c.GroupId
-                    };
-                    forms.Add(f);
+                    
+                    classes.Add(c.GroupId);
                 }
-                bool result = await proxy.PostForms(forms);
+                bool result = await proxy.PostForms(f, classes);
+                if (result)
+                {
+                    await App.Current.MainPage.DisplayAlert("Form Sent!", "The form has been sent to the selected recipients", "OK");
+                    await App.Current.MainPage.Navigation.PopAsync();
+                }
             }
                 
         }

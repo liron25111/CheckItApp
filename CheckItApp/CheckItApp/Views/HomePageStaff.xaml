@@ -23,7 +23,7 @@
             </Grid>
             <Label Text="Welcome! Look at your new forms details"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0" Grid.Column="0"  ></Label>
 
-            <CollectionView ItemsSource="{Binding FormCollection}">
+            <CollectionView x:Name="FormsCV" ItemsSource="{Binding FormCollection}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -33,7 +33,12 @@
                                     <Label Text="{Binding Topic}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
                                     <Label Text="{Binding Time}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
                                 </StackLayout>
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference FormsCV}, Path=BindingContext.GoToFormView}" CommandParameter="{Binding}" />
+                                </Frame.GestureRecognizers>
                             </Frame>
+                            
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

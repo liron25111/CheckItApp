@@ -34,7 +34,7 @@ namespace CheckItApp.ViewModels
         public Command AccountButtonCommand { protected set; get; }
         public Command CreateFormCommand { protected set; get; }
         public Command AddFilePageCommand { protected set; get; }
-
+        public Command<Form> GoToFormView => new Command<Form>((f) => Push?.Invoke(new FormView(f)));
         public ObservableCollection<Form> FormCollection { protected set; get; }
 
         public HomePageStaffViewModel()
@@ -60,18 +60,33 @@ namespace CheckItApp.ViewModels
             Push?.Invoke(new CheckItApp.Views.AddFile());
         }
 
+        private CheckItApi proxy;
         private async void FillFormCollection()
         {
+            proxy = CheckItApi.CreateProxy();
             int clientId = ((App)App.Current).CurrentUser2.Id;
-            CheckItApi api = CheckItApi.CreateProxy();
-            //List<Form> forms = await api.GetForms(clientId);
-            List<Form> forms = FillFormsDemo();
-            foreach (Form f in forms)
-            {
-                FormCollection.Add(f);
-            }
+            //List<Form> forms = FillFormsDemo();
+            //foreach(Form form in forms)
+            //    FormCollection.Add(form);
         }
 
+        private async void FillForms()
+        {
+            FormCollection.Clear();
+            List<Form> teachersForms = await proxy.GetForms(((App)App.Current).CurrentUser2.Id);
+            if(teachersForms != null && teachersForms.Count > 0)
+            {
+                foreach (Form f in teachersForms)
+                {
+                    FormCollection.Add(f);
+                }
+            }
+            
+        }
+        public void Refresh()
+        {
+            FillForms();
+        }
         private List<Form> FillFormsDemo()
         {
             List<Form> forms = new List<Form>();

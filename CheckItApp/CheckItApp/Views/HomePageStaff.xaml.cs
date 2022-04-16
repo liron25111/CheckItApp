@@ -19,5 +19,11 @@ namespace CheckItApp.Views
             BindingContext = Lvm;
             Lvm.Push += (p) => Navigation.PushAsync(p);
         }
+
+        protected override void OnAppearing()
+        {
+            HomePageStaffViewModel vm = (HomePageStaffViewModel)BindingContext;
+            vm.Refresh();
+        }
     }
 }
