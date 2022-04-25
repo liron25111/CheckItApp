@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CheckItApp.Views.FormView"
-             xmlns:sho="http://sharpnado.com">
+             xmlns:sho="http://sharpnado.com"
+             xmlns:models="clr-namespace:CheckItApp.Models">
     
     <ContentPage.Resources>
         <DataTemplate x:Key="ItemViewTemplate">
@@ -45,10 +46,19 @@
                 </Label.FormattedText>
             </Label>
             <Label Text="Recipients" TextColor="White" />
-            <CollectionView HeightRequest="100" IsVisible="False" ItemsSource="{Binding FormGroups}">
-                
-            </CollectionView>
-            <Label Margin="10" Text="FormBody" TextColor="White" FontSize="18"/>
+
+                <StackLayout BindableLayout.ItemsSource="{Binding FormGroups}" HeightRequest="80">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate x:DataType="models:Class">
+                            <Frame BackgroundColor="LightBlue" CornerRadius="20" HeightRequest="40" Padding="0">
+                                <Label Padding="10" Grid.Column="1" Text="{Binding ClassName}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                            </Frame>
+
+
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Label Margin="10" Text="FormBody" TextColor="White" FontSize="18"/>
             <Frame BackgroundColor="White" CornerRadius="20" >
                 <Label Text="{Binding FormBody}" TextColor="Black" FontSize="Body"/>
             </Frame>

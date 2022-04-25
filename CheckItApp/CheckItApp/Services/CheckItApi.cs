@@ -385,6 +385,35 @@ namespace CheckItApp.Services
 
         }
 
+        public async Task<List<Class>> GetFormGroups(int formId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetFormGroups?formId={formId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Class> b = JsonSerializer.Deserialize<List<Class>>(jsonContent, options);
+                    return b;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+
+        }
+
         private CheckItApi(string baseUri)
         {
             //Set client handler to support cookies!!

@@ -9,6 +9,7 @@ using CheckItApp.Services;
 using CheckItApp.Models;
 using Xamarin.Essentials;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace CheckItApp.ViewModels
 {
@@ -49,9 +50,10 @@ namespace CheckItApp.ViewModels
         
         public ObservableCollection<Class> FormGroups { get; set; }
         public Command ConfirmSignature => new Command(() => { });
-
+        private CheckItApi proxy;
         public FormViewModel(Form f)
         {
+            proxy = CheckItApi.CreateProxy();
             currentForm = f;
             formTitle = f.Topic;
             formType = f.FormType;
@@ -62,9 +64,11 @@ namespace CheckItApp.ViewModels
             GetPostedByName();
         }
 
-        public void GetGroups()
+        public async void GetGroups()
         {
-
+            List<Class> groups = await proxy.GetFormGroups(currentForm.FormId);
+            foreach (Class c in groups)
+                FormGroups.Add(c);
         }
         public void GetPostedByName()
         {

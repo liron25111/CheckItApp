@@ -34,7 +34,7 @@
                             <ColumnDefinition Width="80*" />
                             <ColumnDefinition Width="20*" />
                         </Grid.ColumnDefinitions>
-                        <Entry  Placeholder="Enter Your Password " Text="{Binding Password}" Style="{StaticResource Entrys}" Grid.Column="0"></Entry>
+                        <Entry  Placeholder="Enter Your Password " Text="{Binding Password}" Style="{StaticResource Entrys}" IsPassword="True" Grid.Column="0"></Entry>
                         <Image Source="PassIcon.png" Grid.Column="1" />
                     </Grid>
                     <Label  Text="Forgot your password?" HorizontalTextAlignment="End" TextColor="#B2B2B2" Padding="0,10" FontSize="15">
