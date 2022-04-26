@@ -34,7 +34,7 @@
                 </Grid.ColumnDefinitions>
             </Grid>
             <Label Text="Hello"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="35" Margin="90,0,90,0" Grid.Column="0"  ></Label>
-            <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="CenterAndExpand" Grid.Column="1" ></Label>
+            <Label Text="{Binding Account.Username}" TextColor="White" FontSize="30"  HorizontalOptions="CenterAndExpand" Grid.Column="0" ></Label>
             <Label Text="Recently Assigned Forms + Upcoming Forms"  Style="{Binding Labels}" FontSize="20" TextColor="Gray"></Label>
 
             <CollectionView x:Name="FormsCVStudent" ItemsSource="{Binding FormCollection}">
@@ -45,7 +45,7 @@
                                 <StackLayout>
                                     <Label Text="{Binding FormType}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
                                     <Label Text="{Binding Topic}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
-                                    <Label Text="{Binding Time}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
+                                    <Label Text="{Binding TripDate, StringFormat='{0:dd/MM/yyy}'}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
                                 </StackLayout>
                                 <Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Source={Reference FormsCVStudent}, Path=BindingContext.GoToFormView}" CommandParameter="{Binding}" />
@@ -61,10 +61,13 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+
 
                     </Grid.ColumnDefinitions>
-                    <Button BackgroundColor="Transparent" ImageSource="AccountIcon.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
-                    <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="1"></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="GroupIcon.png" Command="{Binding GroupButtonCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="AccountIcon.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="1"  ></Button>
+                    <Button BackgroundColor="Transparent" ImageSource="logoutIcon.png" Command="{Binding LogOutButtonCommand}" Grid.Row="0" Grid.Column="2"></Button>
                 </Grid>
             </Frame>
         </StackLayout>

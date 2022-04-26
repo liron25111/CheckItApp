@@ -34,6 +34,9 @@ namespace CheckItApp.ViewModels
         public Command AccountButtonCommand { protected set; get; }
         public Command CreateFormCommand { protected set; get; }
         public Command SendToFormsPageCommand { protected set; get; }
+        public Command SendToGroupCommand { protected set; get; }
+
+        
 
         public ObservableCollection<Form> FormCollection { protected set; get; }
         private CheckItApi proxy;
@@ -43,6 +46,7 @@ namespace CheckItApp.ViewModels
             AccountButtonCommand = new Command(AccountButton);
             CreateFormCommand = new Command(CreateForm);
             SendToFormsPageCommand = new Command(AllFormsPage);
+            SendToGroupCommand = new Command(GroupButtonCommand);
             FormCollection = new ObservableCollection<Form>();
             proxy = CheckItApi.CreateProxy();
             FillForms();
@@ -70,6 +74,10 @@ namespace CheckItApp.ViewModels
         private void AccountButton()
         {
             Push?.Invoke(new CheckItApp.Views.ProfilePage());
+        }
+        private void GroupButtonCommand()
+        {
+            Push?.Invoke(new CheckItApp.Views.GroupPage());
         }
         private void AllFormsPage()
         {

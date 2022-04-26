@@ -18,7 +18,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-
                 </Grid.ColumnDefinitions>
             </Grid>
             <Label Text="Welcome! Look at your new forms details"  HorizontalOptions="CenterAndExpand" TextColor="White" FontSize="20" Margin="90,0,90,0" Grid.Column="0"  ></Label>
