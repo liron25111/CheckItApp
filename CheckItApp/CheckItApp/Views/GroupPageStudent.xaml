@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CheckItApp.Views.GroupPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <GradientStop Color="#011724" Offset="0.1">
+
+                        </GradientStop>
+                        <GradientStop Color="#13649E" Offset="1.0"></GradientStop>
+                    </LinearGradientBrush>
+                </StackLayout.Background>
+                <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
+                <Label Text="Hello,Here is all your Groups" TextColor="White" FontSize="60" Margin="20,0,0,0" FontAttributes="Bold" FontFamily="Noto Sans JP"></Label>
+
+                <CollectionView x:Name="FormsCV" ItemsSource="{Binding GroupCollection}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightBlue"    >
+                                    <StackLayout>
+                                        <Label Text="{Binding GroupName}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
+                                        
+                                    </StackLayout>
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:Reference FormsCV}, Path=BindingContext.GoToFormView}" CommandParameter="{Binding}" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

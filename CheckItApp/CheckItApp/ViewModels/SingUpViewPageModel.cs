@@ -12,7 +12,7 @@ using CheckItApp.Models;
 
 namespace CheckItApp.ViewModels
 {
-    class SingUpViewPageModel : INotifyPropertyChanged
+    class SingUpViewPageModel : BaseViewModel
     {
 
         #region INotifyPropertyChanged
