@@ -4,18 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CheckItApp.ViewModels;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace CheckItApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class GroupPage : ContentPage
+    public partial class GroupPageStaff : ContentPage
     {
-        public GroupPage()
+        public GroupPageStaff()
         {
             InitializeComponent();
-            StudentGroupPageViewModel Lvm = new StudentGroupPageViewModel();
+            StaffGroupPage Lvm = new StaffGroupPage();
             BindingContext = Lvm;
             Lvm.Push += (p) => Navigation.PushAsync(p);
         }

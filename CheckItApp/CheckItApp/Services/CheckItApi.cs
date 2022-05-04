@@ -112,6 +112,66 @@ namespace CheckItApp.Services
                 return null;
             }
         }
+
+        public async Task<List<Class>> GetClass(int clientId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetGroupsOfStudent?clientId={clientId}");
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Class> Class = JsonSerializer.Deserialize<List<Class>>(jsonContent, options);
+                    return Class;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+
+        public async Task<List<Class>> GetClass2(int StaffId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                string url = $"{this.baseUri}/GetGroupsOfStaff?staffMemberId={StaffId}";
+                HttpResponseMessage response = await this.client.GetAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Class> Class = JsonSerializer.Deserialize<List<Class>>(jsonContent, options);
+                    return Class;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+
         public async Task<List<Form>> GetFormsStaffMember(int clientId)
         {
             try

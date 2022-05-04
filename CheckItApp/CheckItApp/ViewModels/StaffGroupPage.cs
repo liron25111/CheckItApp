@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace CheckItApp.ViewModels
 {
-     class StudentGroupPageViewModel : BaseViewModel
+     class StaffGroupPage : BaseViewModel
     {
         public event Action<Page> Push;
 
@@ -40,7 +40,7 @@ namespace CheckItApp.ViewModels
             }
             set
             {
-                if(group !=value)
+                if (group != value)
                 {
                     group = value;
                     OnPropertyChanged("Class");
@@ -51,7 +51,7 @@ namespace CheckItApp.ViewModels
         private CheckItApi proxy;
         public ObservableCollection<Class> GroupCollection { protected set; get; }
 
-        public StudentGroupPageViewModel()
+        public StaffGroupPage()
         {
             GroupCollection = new ObservableCollection<Class>();
             ShowGroupCollection();
@@ -59,8 +59,8 @@ namespace CheckItApp.ViewModels
         private async void ShowGroupCollection()
         {
             proxy = CheckItApi.CreateProxy();
-            int clientId = ((App)App.Current).CurrentUser.Id;
-            List<Class> classes = await proxy.GetClass(clientId);
+            int StaffId = ((App)App.Current).CurrentUser2.Id;
+            List<Class> classes = await proxy.GetClass2(StaffId);
             GroupCollection = new ObservableCollection<Class>(classes);
 
 
@@ -68,3 +68,4 @@ namespace CheckItApp.ViewModels
 
     }
 }
+

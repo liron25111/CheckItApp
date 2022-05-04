@@ -50,8 +50,11 @@
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+
 
                     </Grid.ColumnDefinitions>
+                    <Button BackgroundColor="Transparent" ImageSource="GroupIcon.png" Command="{Binding SendToGroupCommand}" Grid.Row="0" Grid.Column="4"  ></Button>
                     <Button BackgroundColor="Transparent" ImageSource="CodeIcon.png" Command="{Binding AddFilePageCommand}" Grid.Row="0" Grid.Column="0"  ></Button>
                     <Button BackgroundColor="Transparent" ImageSource="EditIcon.png" Command="{Binding CreateFormCommand}" Grid.Row="0" Grid.Column="1"  ></Button>
                     <Button BackgroundColor="Transparent" ImageSource="Person.png" Command="{Binding AccountButtonCommand}" Grid.Row="0" Grid.Column="2"  ></Button>

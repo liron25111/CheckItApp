@@ -34,6 +34,8 @@ namespace CheckItApp.ViewModels
         public Command AccountButtonCommand { protected set; get; }
         public Command CreateFormCommand { protected set; get; }
         public Command AddFilePageCommand { protected set; get; }
+        public Command SendToGroupCommand { protected set; get; }
+
         public Command<Form> GoToFormView => new Command<Form>((f) => Push?.Invoke(new FormView(f)));
         public ObservableCollection<Form> FormCollection { protected set; get; }
 
@@ -43,6 +45,8 @@ namespace CheckItApp.ViewModels
             CreateFormCommand = new Command(CreateForm);
             AddFilePageCommand = new Command(AddFilePage);
             FormCollection = new ObservableCollection<Form>();
+            SendToGroupCommand = new Command(GroupButtonCommand);
+
             FillFormCollection();
         }
 
@@ -59,7 +63,10 @@ namespace CheckItApp.ViewModels
         {
             Push?.Invoke(new CheckItApp.Views.AddFile());
         }
-
+        private void GroupButtonCommand()
+        {
+            Push?.Invoke(new CheckItApp.Views.GroupPageStaff());
+        }
         private CheckItApi proxy;
         private async void FillFormCollection()
         {
