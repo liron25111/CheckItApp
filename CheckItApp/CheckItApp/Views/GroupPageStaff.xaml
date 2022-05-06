@@ -14,19 +14,16 @@
                     </LinearGradientBrush>
                 </StackLayout.Background>
                 <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
-                <Label Text="Hello, Here you can see all your Groups" TextColor="White" FontSize="30" Margin="20,0,0,0" FontAttributes="None"  FontFamily="Noto Sans JP"></Label>
+                <Label Text="Hello, Here you can see all your Groups" TextColor="White" FontSize="20" Margin="10,0,0,0" FontAttributes="None"  FontFamily="Noto Sans JP"></Label>
 
                 <CollectionView x:Name="FormsCV" ItemsSource="{Binding GroupCollection}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightBlue"    >
-                                    <StackLayout>
-                                        <Label Text="{Binding ClassName}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
-
+                                <Frame WidthRequest="5" HeightRequest="70" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightBlue"    >
+                                    <StackLayout >
+                                        <Label Text="{Binding ClassName}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand"  />
                                     </StackLayout>
-
-
                                 </Frame>
 
                             </StackLayout>

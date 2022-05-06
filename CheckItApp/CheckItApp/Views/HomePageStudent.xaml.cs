@@ -18,6 +18,8 @@ namespace CheckItApp.Views
             HomePageStudentViewModel Lvm = new HomePageStudentViewModel();
             BindingContext = Lvm;
             Lvm.Push += (p) => Navigation.PushAsync(p);
+            Lvm.PopToRoot += () => Navigation.PopToRootAsync();
+
             InitializeComponent();
         }
 

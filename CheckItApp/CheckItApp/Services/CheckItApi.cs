@@ -364,6 +364,62 @@ namespace CheckItApp.Services
             }
         }
 
+        public async Task<bool> CheckIfSigned(int formid, string Email)
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/GetSignPeople?formid={formid}&Email={Email}";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    bool b = JsonSerializer.Deserialize<bool>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
+        public async Task<bool> IsSinged(int formid, int clientid)
+        {
+            try
+            {
+                string uri = $"{this.baseUri}/CheckIfSigned?formid={formid}&clientid={clientid}";
+                HttpResponseMessage response = await this.client.GetAsync(uri);
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    bool b = JsonSerializer.Deserialize<bool>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+
         public async Task<bool> UploadFile(string fullPath, string targetFileName)
         {
             try
@@ -386,6 +442,38 @@ namespace CheckItApp.Services
                 return false;
             }
         }
+
+
+       
+
+        public async Task<int> GetSigns(int formId)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Signs?formId={formId}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    int b = JsonSerializer.Deserialize<int>(content, options);
+                    return b;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return 0;
+            }
+        }
+
+
         public async Task<List<Class>> GetClassesAsync()
         {
             try
@@ -444,7 +532,33 @@ namespace CheckItApp.Services
             }
 
         }
+        public async Task<bool> LogOut()
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
 
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/LogOut");
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                   bool b = JsonSerializer.Deserialize<bool>(jsonContent, options);
+                    return b;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
         public async Task<List<Class>> GetFormGroups(int formId)
         {
             try

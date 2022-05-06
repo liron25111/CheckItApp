@@ -48,7 +48,7 @@
                                     <Label Text="{Binding TripDate, StringFormat='{0:dd/MM/yyy}'}" TextColor="Gray" FontSize="20"  HorizontalOptions="StartAndExpand" />
                                 </StackLayout>
                                 <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:Reference FormsCV}, Path=BindingContext.GoToFormView}" CommandParameter="{Binding}" />
+                                    <TapGestureRecognizer Command="{Binding Source={x:Reference FormsCVStudent}, Path=BindingContext.GoToFormView}" CommandParameter="{Binding}" />
                                 </Frame.GestureRecognizers>
                             </Frame>
                         </StackLayout>

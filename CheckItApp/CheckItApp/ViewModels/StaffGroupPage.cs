@@ -61,8 +61,10 @@ namespace CheckItApp.ViewModels
             proxy = CheckItApi.CreateProxy();
             int StaffId = ((App)App.Current).CurrentUser2.Id;
             List<Class> classes = await proxy.GetClass2(StaffId);
-            GroupCollection = new ObservableCollection<Class>(classes);
-
+            foreach(Class c in classes)
+            {
+                GroupCollection.Add(c);
+            }
 
         }
 

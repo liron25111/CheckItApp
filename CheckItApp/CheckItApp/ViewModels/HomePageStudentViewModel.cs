@@ -13,6 +13,7 @@ namespace CheckItApp.ViewModels
     class HomePageStudentViewModel :BaseViewModel
     {
         public event Action<Page> Push;
+        public event Action PopToRoot;
 
         private Account account;
 
@@ -36,7 +37,8 @@ namespace CheckItApp.ViewModels
         public Command SendToFormsPageCommand { protected set; get; }
         public Command SendToGroupCommand { protected set; get; }
 
-        
+        public Command LogOutButtonCommand { protected set; get; }
+
 
         public ObservableCollection<Form> FormCollection { protected set; get; }
         private CheckItApi proxy;
@@ -48,7 +50,10 @@ namespace CheckItApp.ViewModels
             SendToFormsPageCommand = new Command(AllFormsPage);
             SendToGroupCommand = new Command(GroupButtonCommand);
             FormCollection = new ObservableCollection<Form>();
+
             proxy = CheckItApi.CreateProxy();
+            LogOutButtonCommand = new Command(LogOut);
+
             FillForms();
         }
 
@@ -67,6 +72,16 @@ namespace CheckItApp.ViewModels
             this.FillForms();
         }
         // פעולות
+        private async void LogOut()
+        {
+            bool b = await proxy.LogOut();
+            if (b)
+                PopToRoot?.Invoke();
+            else
+            {
+
+            }
+        }
         private void CreateForm()
         {
             Push?.Invoke(new CheckItApp.Views.CreateForm());

@@ -13,6 +13,7 @@ namespace CheckItApp.ViewModels
     class HomePageStaffViewModel : BaseViewModel
     {
         public event Action<Page> Push;
+        public event Action PopToRoot;
 
         private Account account;
 
@@ -35,22 +36,34 @@ namespace CheckItApp.ViewModels
         public Command CreateFormCommand { protected set; get; }
         public Command AddFilePageCommand { protected set; get; }
         public Command SendToGroupCommand { protected set; get; }
+        public Command LogOutButtonCommand { protected set; get; }
 
-        public Command<Form> GoToFormView => new Command<Form>((f) => Push?.Invoke(new FormView(f)));
+        public Command<Form> GoToFormView => new Command<Form>((f) => Push?.Invoke(new FormStaffMember(f)));
         public ObservableCollection<Form> FormCollection { protected set; get; }
 
         public HomePageStaffViewModel()
         {
+            proxy = CheckItApi.CreateProxy();
             AccountButtonCommand = new Command(AccountButton);
             CreateFormCommand = new Command(CreateForm);
             AddFilePageCommand = new Command(AddFilePage);
             FormCollection = new ObservableCollection<Form>();
             SendToGroupCommand = new Command(GroupButtonCommand);
-
+            LogOutButtonCommand = new Command(LogOut);
             FillFormCollection();
         }
 
         // פעולות
+        private async void LogOut()
+        {
+            bool b = await proxy.LogOut();
+            if (b)
+                PopToRoot?.Invoke();
+            else
+            {
+
+            }
+        }
         private void CreateForm()
         {
             Push?.Invoke(new CheckItApp.Views.CreateForm());

@@ -18,6 +18,7 @@ namespace CheckItApp.Views
             HomePageStaffViewModel Lvm = new HomePageStaffViewModel();
             BindingContext = Lvm;
             Lvm.Push += (p) => Navigation.PushAsync(p);
+            Lvm.PopToRoot += () => Navigation.PopToRootAsync();
         }
 
         protected override void OnAppearing()

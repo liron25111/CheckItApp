@@ -56,15 +56,21 @@ namespace CheckItApp.ViewModels
             GroupCollection = new ObservableCollection<Class>();
             ShowGroupCollection();
         }
-        private async void ShowGroupCollection()
-        {
-            proxy = CheckItApi.CreateProxy();
-            int clientId = ((App)App.Current).CurrentUser.Id;
-            List<Class> classes = await proxy.GetClass(clientId);
-            GroupCollection = new ObservableCollection<Class>(classes);
+    
+            private async void ShowGroupCollection()
+            {
+                proxy = CheckItApi.CreateProxy();
+                int clientId = ((App)App.Current).CurrentUser.Id;
+                List<Class> classes = await proxy.GetClass(clientId);
+                foreach (Class c in classes)
+                {
+                    GroupCollection.Add(c);
+                }
+
+            }
 
 
         }
 
     }
-}
+

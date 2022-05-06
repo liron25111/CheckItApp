@@ -11,10 +11,9 @@ using Xamarin.Essentials;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System;
-
 namespace CheckItApp.ViewModels
 {
-    internal class FormViewModel : BaseViewModel
+    internal class FormStaffMemberViewModel : BaseViewModel
     {
 
         private Form currentForm;
@@ -36,10 +35,10 @@ namespace CheckItApp.ViewModels
             get => numsigned;
             set
             {
-                if(numsigned != value)
+                if (numsigned != value)
                 {
                     numsigned = value;
-                    OnPropertyChanged("Numsigned");
+                    OnPropertyChanged();
                 }
             }
         }
@@ -55,41 +54,29 @@ namespace CheckItApp.ViewModels
             get => formId;
             set => SetValue(ref formId, value);
         }
-        private bool signed;
-        public bool Signed
-        {
-            get => signed;
-            set => SetValue(ref signed, value);
-        }
+       
         private string sentBy;
         public string SentBy
         {
             get => sentBy;
             set => SetValue(ref sentBy, value);
         }
-        
+
         public ObservableCollection<Class> FormGroups { get; set; }
 
         public event Action<Page> Push;
 
-        public Command ConfirmSignature => new Command(async () => {if (signed == true)
-            {
-                int clientId = ((App)App.Current).CurrentUser.Id;
-                bool IsSinged = await proxy.IsSinged(FormId, clientId);
-                Push?.Invoke(new CheckItApp.Views.HomePageStudent());
-            }
-        });
+       
         private CheckItApi proxy;
-        public FormViewModel(Form f)
+        public FormStaffMemberViewModel(Form f)
         {
             proxy = CheckItApi.CreateProxy();
             currentForm = f;
             formTitle = f.Topic;
             formType = f.FormType;
             formBody = f.MassageBody;
-            signed = false;
             formId = f.FormId;
-            Numsigned = 0;
+            numsigned = 0;
             FormGroups = new ObservableCollection<Class>();
             GetGroups();
             GetPostedByName();
@@ -98,7 +85,7 @@ namespace CheckItApp.ViewModels
         public async void SignedEventFunction()
         {
             await SignedEvent();
-        } 
+        }
         public ICommand LoginCommand { get; set; }// login Command
         public delegate Task<int> SignedDelegate();
         public event SignedDelegate SignedEvent;

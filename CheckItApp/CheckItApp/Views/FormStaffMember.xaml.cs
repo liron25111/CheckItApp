@@ -7,22 +7,21 @@ using CheckItApp.Models;
 using CheckItApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 namespace CheckItApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class FormView : ContentPage
+    public partial class FormStaffMember : ContentPage
     {
-        public FormView(Form f)
+        public FormStaffMember(Form f)
         {
-            FormViewModel context = new FormViewModel(f);
+            FormStaffMemberViewModel context = new FormStaffMemberViewModel(f);
             this.BindingContext = context;
             InitializeComponent();
         }
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            FormViewModel vm = (FormViewModel)BindingContext;
+            FormStaffMemberViewModel vm = (FormStaffMemberViewModel)BindingContext;
             vm.SignedEventFunction();
         }
     }
