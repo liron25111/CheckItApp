@@ -14,9 +14,12 @@ namespace CheckItApp.Views
     {
         public AddFile()
         {
+
+
+            InitializeComponent();
             AddFileViewModel context = new AddFileViewModel();
             this.BindingContext = context;
-            InitializeComponent();
+            context.Push += (p) => Navigation.PushAsync(p);
         }
     }
 }

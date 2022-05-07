@@ -15,9 +15,12 @@ namespace CheckItApp.Views
     {
         public FormView(Form f)
         {
+            InitializeComponent();
+
             FormViewModel context = new FormViewModel(f);
             this.BindingContext = context;
-            InitializeComponent();
+            context.Push += (p) => Navigation.PushAsync(p);
+
         }
         protected override async void OnAppearing()
         {

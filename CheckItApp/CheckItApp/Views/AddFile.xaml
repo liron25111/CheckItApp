@@ -14,6 +14,7 @@
             </StackLayout.Background>
             <Label Text="Add Xlsx File" TextColor="White" FontSize="35" FontAttributes="Bold" HorizontalOptions="Center" FontFamily="Noto Sans JP"/>
             <Button BackgroundColor="#4E4F79"   Text="Add File" Command="{Binding AddFileCommand}" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"/>
+            <Image Source="loading.gif" IsAnimationPlaying="True" IsEnabled="{Binding ShowGif}" />
 
         </StackLayout>
     </ContentPage.Content>

@@ -76,7 +76,6 @@ namespace CheckItApp.ViewModels
             formType = f.FormType;
             formBody = f.MassageBody;
             formId = f.FormId;
-            numsigned = 0;
             FormGroups = new ObservableCollection<Class>();
             GetGroups();
             GetPostedByName();
@@ -91,7 +90,7 @@ namespace CheckItApp.ViewModels
         public event SignedDelegate SignedEvent;
         public async Task<int> NumSigned()
         {
-            int Numsigned = await proxy.GetSigns(formId);
+            Numsigned = await proxy.GetSigns(formId);
             return Numsigned;
         }
         public async void GetGroups()

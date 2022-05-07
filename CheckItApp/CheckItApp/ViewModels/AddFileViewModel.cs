@@ -33,9 +33,28 @@ namespace CheckItApp.ViewModels
                 }
             }
         }
+        private bool showgif;
+        public bool ShowGif// get eror
+        {
+            get
+            {
+                return showgif;
+            }
+            set
+            {
+                if (showgif != value)
+                {
+                    showgif = value;
+                    OnPropertyChanged("ShowGif");
+                }
+            }
+        }
+         
+
         public Command AddFileCommand => new Command(() => AddFile());
         public async Task<FileResult> AddFile()
         {
+            ShowGif = true;
             var customFileType =
             new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
             {
@@ -89,7 +108,8 @@ namespace CheckItApp.ViewModels
 
         public AddFileViewModel()
         {
-
+            showgif = false;
         }
+        
     }
 }

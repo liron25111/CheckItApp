@@ -46,7 +46,7 @@
                 </Label.FormattedText>
             </Label>
 
-                <Label TextColor="White"  Text="{Binding Numsigned,StringFormat='{0} students signed'}" ></Label>
+                <Label TextColor="White" Text="{Binding Numsigned,StringFormat='{0} students signed'}" ></Label>
                 <Label Text="Recipients" TextColor="White" />
 
                 <StackLayout BindableLayout.ItemsSource="{Binding FormGroups}" HeightRequest="80">

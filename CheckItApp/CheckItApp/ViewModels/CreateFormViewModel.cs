@@ -239,7 +239,7 @@ namespace CheckItApp.ViewModels
                 if (result)
                 {
                     await App.Current.MainPage.DisplayAlert("Form Sent!", "The form has been sent to the selected recipients", "OK");
-                    await App.Current.MainPage.Navigation.PopAsync();
+                    Push?.Invoke(new CheckItApp.Views.HomePageStaff());
                 }
             }
                 
