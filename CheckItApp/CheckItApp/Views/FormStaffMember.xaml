@@ -63,6 +63,8 @@
                 <Frame BackgroundColor="White" CornerRadius="20" >
                     <Label Text="{Binding FormBody}" TextColor="Black" FontSize="Body"/>
                 </Frame>
+                <Label TextColor="White" Text="{Binding SignedStudents}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                <Label TextColor="White" Text="{Binding UnsignedStudents}" VerticalOptions="Center"  HorizontalOptions="Start"/>
             </StackLayout>
         </ScrollView>
 

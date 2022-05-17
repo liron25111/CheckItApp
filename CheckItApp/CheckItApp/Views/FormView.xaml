@@ -67,6 +67,10 @@
                 <CheckBox Grid.Column="0" HorizontalOptions="Start" IsChecked="{Binding Signed}" />
                 <Label TextColor="White" Text="By checking this box, you hereby sign this form." VerticalOptions="Center" Grid.Column="1" HorizontalOptions="Start"/>
                 <Button BackgroundColor="#4E4F79" Text="Click here to sign" Command="{Binding ConfirmSignature}" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"></Button>
+                <Label TextColor="White" Text="{Binding SignedStudents}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+                <Label TextColor="White" Text="{Binding UnsignedStudents}" VerticalOptions="Center"  HorizontalOptions="Start"/>
+
+
             </StackLayout>
         </ScrollView>
         

@@ -44,7 +44,17 @@ namespace CheckItApp.ViewModels
                 {
                     group = value;
                     OnPropertyChanged("Class");
+                    ClassUpdate();
                 }
+            }
+        }
+        private void ClassUpdate()
+        {
+            if (Class != null)
+            {
+                Class c = Class;
+                Class = null;
+                Push?.Invoke(new GroupDetailsPage(c));
             }
         }
 

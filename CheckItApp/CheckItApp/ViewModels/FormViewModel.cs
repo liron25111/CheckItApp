@@ -67,7 +67,32 @@ namespace CheckItApp.ViewModels
             get => sentBy;
             set => SetValue(ref sentBy, value);
         }
-        
+        private string signedStudents;
+        public string SignedStudents
+        {
+            get { return signedStudents; }
+            set
+            {
+                if(signedStudents != value)
+                {
+                    signedStudents = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string unsignedStudents;
+        public string UnsignedStudents
+        {
+            get { return unsignedStudents; }
+            set
+            {
+                if (unsignedStudents != value)
+                {
+                    unsignedStudents = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public ObservableCollection<Class> FormGroups { get; set; }
 
         public event Action<Page> Push;
@@ -92,6 +117,7 @@ namespace CheckItApp.ViewModels
             FormGroups = new ObservableCollection<Class>();
             GetGroups();
             GetPostedByName();
+            SignedStudentsFunc();
             SignedEvent += NumSigned;
         }
         public async void SignedEventFunction()
@@ -106,12 +132,51 @@ namespace CheckItApp.ViewModels
             Numsigned = await proxy.GetSigns(formId);
             return Numsigned;
         }
+        public async void SignedStudentsFunc()
+        {
+            List<Tuple<Student, bool>> signedPeople = await proxy.GetSignedStudentsInForm(formId);
+            SignedStudents = "Signed Students:";
+            UnsignedStudents = "Signed Students:";
+            int signedStudens = 0;
+            int unsignedStudens = 0;
+
+            foreach (Tuple<Student, bool> t in signedPeople)
+            {
+                if (t.Item2)
+                {
+                    SignedStudents += $"{t.Item1.Name},";
+                    signedStudens++;
+                }
+                else
+                {
+                    UnsignedStudents += $"{t.Item1.Name},";
+                    unsignedStudens++;
+                }
+            }
+            if(signedStudens == 0)
+            {
+                SignedStudents += "None";
+            }
+            else
+            {
+                SignedStudents = SignedStudents.Substring(0, SignedStudents.Length - 1);
+            }
+            if (unsignedStudens == 0)
+            {
+                UnsignedStudents += "None";
+            }
+            else
+            {
+                UnsignedStudents = UnsignedStudents.Substring(0, UnsignedStudents.Length - 1);
+            }
+        }
         public async void GetGroups()
         {
             List<Class> groups = await proxy.GetFormGroups(currentForm.FormId);
             foreach (Class c in groups)
                 FormGroups.Add(c);
         }
+
         public async void GetNumSigned()
         {
             int a = currentForm.FormId;

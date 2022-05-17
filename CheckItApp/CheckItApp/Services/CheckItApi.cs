@@ -140,8 +140,60 @@ namespace CheckItApp.Services
                 return null;
             }
         }
+        public async Task<List<Tuple<Student,bool>>> GetSignedStudentsInForm(int formId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetSignedStudentsInForm?formId={formId}");
+                if (response.IsSuccessStatusCode)
+                {
 
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Tuple<Student, bool>> signedStudents = JsonSerializer.Deserialize<List<Tuple<Student, bool>>>(jsonContent, options);
+                    return signedStudents;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+        public async Task<List<Student>> GetStudentsInGroup(int groupId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetStudentsInGroup?groupId={groupId}");
+                if (response.IsSuccessStatusCode)
+                {
 
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    List<Student> students = JsonSerializer.Deserialize<List<Student>>(jsonContent, options);
+                    return students;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
         public async Task<List<Class>> GetClass2(int StaffId)
         {
             try

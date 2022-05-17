@@ -16,7 +16,7 @@
                 <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
                 <Label Text="Hello, Here you can see all your Groups" TextColor="White" FontSize="20" Margin="10,0,0,0" FontAttributes="None"  FontFamily="Noto Sans JP"></Label>
 
-                <CollectionView x:Name="FormsCV" ItemsSource="{Binding GroupCollection}">
+                <CollectionView x:Name="FormsCV" ItemsSource="{Binding GroupCollection}" SelectedItem="{Binding Class}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
