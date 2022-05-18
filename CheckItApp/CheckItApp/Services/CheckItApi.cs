@@ -9,8 +9,11 @@ using System.Text.Json.Serialization;
 using System.Text.Unicode;
 using System.Text.Encodings.Web;
 using Xamarin.Forms;
+
 using Xamarin.Essentials;
 using System.IO;
+using CheckItApp.DTO;
+
 namespace CheckItApp.Services
 {
     class CheckItApi
@@ -140,7 +143,7 @@ namespace CheckItApp.Services
                 return null;
             }
         }
-        public async Task<List<Tuple<Student,bool>>> GetSignedStudentsInForm(int formId)
+        public async Task<List<StudentSignDTO>> GetSignedStudentsInForm(int formId)
         {
             try
             {
@@ -153,7 +156,12 @@ namespace CheckItApp.Services
                 {
 
                     string jsonContent = await response.Content.ReadAsStringAsync();
-                    List<Tuple<Student, bool>> signedStudents = JsonSerializer.Deserialize<List<Tuple<Student, bool>>>(jsonContent, options);
+                    Newtonsoft.Json.JsonSerializerSettings options1 = new Newtonsoft.Json.JsonSerializerSettings
+                    {
+                        PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.All
+                    };
+
+                    List<StudentSignDTO> signedStudents = Newtonsoft.Json.JsonConvert.DeserializeObject<List<StudentSignDTO>>(jsonContent, options1);
                     return signedStudents;
                 }
                 else

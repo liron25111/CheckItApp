@@ -23,7 +23,7 @@
                             <StackLayout>
                                 <Frame WidthRequest="5" HeightRequest="120" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightBlue"    >
                                     <StackLayout>
-                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
+                                        <Label Text="{Binding Student.Name}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
 
                                     </StackLayout>
 

@@ -11,6 +11,7 @@ using Xamarin.Essentials;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System;
+using CheckItApp.DTO;
 
 namespace CheckItApp.ViewModels
 {
@@ -134,22 +135,22 @@ namespace CheckItApp.ViewModels
         }
         public async void SignedStudentsFunc()
         {
-            List<Tuple<Student, bool>> signedPeople = await proxy.GetSignedStudentsInForm(formId);
+            List<StudentSignDTO> signedPeople = await proxy.GetSignedStudentsInForm(formId);
             SignedStudents = "Signed Students:";
             UnsignedStudents = "Signed Students:";
             int signedStudens = 0;
             int unsignedStudens = 0;
 
-            foreach (Tuple<Student, bool> t in signedPeople)
+            foreach (StudentSignDTO studentSign in signedPeople)
             {
-                if (t.Item2)
+                if (studentSign.signed)
                 {
-                    SignedStudents += $"{t.Item1.Name},";
+                    SignedStudents += $"{studentSign.s.Name},";
                     signedStudens++;
                 }
                 else
                 {
-                    UnsignedStudents += $"{t.Item1.Name},";
+                    UnsignedStudents += $"{studentSign.s.Name},";
                     unsignedStudens++;
                 }
             }

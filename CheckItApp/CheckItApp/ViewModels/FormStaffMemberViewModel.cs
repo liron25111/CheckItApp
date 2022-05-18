@@ -6,6 +6,7 @@ using CheckItApp.Views;
 using Xamarin.Forms;
 using System.Threading.Tasks;
 using CheckItApp.Services;
+using CheckItApp.DTO;
 using CheckItApp.Models;
 using Xamarin.Essentials;
 using System.Collections.ObjectModel;
@@ -121,22 +122,22 @@ namespace CheckItApp.ViewModels
         }
         public async void SignedStudentsFunc()
         {
-            List<Tuple<Student, bool>> signedPeople = await proxy.GetSignedStudentsInForm(formId);
+            List<StudentSignDTO> signedPeople = await proxy.GetSignedStudentsInForm(formId);
             SignedStudents = "Signed Students:";
-            UnsignedStudents = "Signed Students:";
+            UnsignedStudents = "Unsigned Students:";
             int signedStudens = 0;
             int unsignedStudens = 0;
 
-            foreach (Tuple<Student, bool> t in signedPeople)
+            foreach (StudentSignDTO s in signedPeople)
             {
-                if (t.Item2)
+                if (s.signed)
                 {
-                    SignedStudents += $"{t.Item1.Name},";
+                    SignedStudents += $"{s.s.Name},";
                     signedStudens++;
                 }
                 else
                 {
-                    UnsignedStudents += $"{t.Item1.Name},";
+                    UnsignedStudents += $"{s.s.Name},";
                     unsignedStudens++;
                 }
             }
@@ -163,11 +164,11 @@ namespace CheckItApp.ViewModels
             foreach (Class c in groups)
                 FormGroups.Add(c);
         }
-        public async void GetNumSigned()
-        {
-            int a = currentForm.FormId;
-            //int signs = await proxy.GetSigns(a);
-        }
+        //public async void GetNumSigned()
+        //{
+        //    int a = currentForm.FormId;
+        //    //int signs = await proxy.GetSigns(a);
+        //}
         public void GetPostedByName()
         {
 
