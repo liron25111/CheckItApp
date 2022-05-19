@@ -107,6 +107,7 @@ namespace CheckItApp.ViewModels
             GetPostedByName();
             SignedStudentsFunc();
             SignedEvent += NumSigned;
+            Alert = new Command(ALertFunc);
         }
         public async void SignedEventFunction()
         {
@@ -169,7 +170,7 @@ namespace CheckItApp.ViewModels
         //    int a = currentForm.FormId;
         //    //int signs = await proxy.GetSigns(a);
         //}
-        public Command Alert { get; set; }
+        public ICommand Alert { get; set; }
 
         private async void ALertFunc()
         {
