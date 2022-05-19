@@ -169,6 +169,13 @@ namespace CheckItApp.ViewModels
         //    int a = currentForm.FormId;
         //    //int signs = await proxy.GetSigns(a);
         //}
+        public Command Alert { get; set; }
+
+        private async void ALertFunc()
+        {
+            await proxy.AlertAsync(formId);
+        }
+
         public void GetPostedByName()
         {
 

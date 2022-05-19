@@ -115,6 +115,33 @@ namespace CheckItApp.Services
                 return null;
             }
         }
+        public async Task<bool> AlertAsync(int formId)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true
+                };
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Alert?formId={formId}");
+                if (response.IsSuccessStatusCode)
+                {
+
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool b = JsonSerializer.Deserialize<bool>(jsonContent, options);
+                    return b;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
 
         public async Task<List<Class>> GetClass(int clientId)
         {

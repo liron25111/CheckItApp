@@ -63,6 +63,7 @@
                 <Frame BackgroundColor="White" CornerRadius="20" >
                     <Label Text="{Binding FormBody}" TextColor="Black" FontSize="Body"/>
                 </Frame>
+                <Button BackgroundColor="#4E4F79" Text="Alert Unsigned Students" Command="{Binding Alert}" TextColor="White" FontFamily="Noto Sans JP" TextTransform="None" FontAttributes="Bold"  FontSize="28" BorderColor="#343434" BorderWidth="1" HeightRequest="55" Margin="70,0" CornerRadius="20"></Button>
                 <Label TextColor="White" Text="{Binding SignedStudents}" VerticalOptions="Center"  HorizontalOptions="Start"/>
                 <Label TextColor="White" Text="{Binding UnsignedStudents}" VerticalOptions="Center"  HorizontalOptions="Start"/>
             </StackLayout>
