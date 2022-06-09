@@ -54,9 +54,10 @@ namespace CheckItApp.ViewModels
             {
                 Class c = Class;
                 Class = null;
-                Push?.Invoke(new GroupDetailsPage(c));
+                Push?.Invoke(new GroupDetailsPage2(c));
             }
         }
+        public Command Selection { get; set; }
 
         private CheckItApi proxy;
         public ObservableCollection<Class> GroupCollection { protected set; get; }
@@ -65,6 +66,8 @@ namespace CheckItApp.ViewModels
         {
             GroupCollection = new ObservableCollection<Class>();
             ShowGroupCollection();
+            Selection = new Command(ClassUpdate);
+
         }
         private async void ShowGroupCollection()
         {

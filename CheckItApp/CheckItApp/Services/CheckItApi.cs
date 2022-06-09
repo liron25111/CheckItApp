@@ -63,7 +63,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 string json = JsonSerializer.Serialize<Account>(u, options);
                 StringContent content = new StringContent(json, Encoding.UTF8, "application/json");
@@ -94,7 +95,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetForms?clientId={clientId}");
                 if (response.IsSuccessStatusCode)
@@ -121,7 +123,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Alert?formId={formId}");
                 if (response.IsSuccessStatusCode)
@@ -149,7 +152,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetGroupsOfStudent?clientId={clientId}");
                 if (response.IsSuccessStatusCode)
@@ -176,7 +180,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetSignedStudentsInForm?formId={formId}");
                 if (response.IsSuccessStatusCode)
@@ -208,7 +213,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetStudentsInGroup?groupId={groupId}");
                 if (response.IsSuccessStatusCode)
@@ -235,7 +241,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 string url = $"{this.baseUri}/GetGroupsOfStaff?staffMemberId={StaffId}";
                 HttpResponseMessage response = await this.client.GetAsync(url);
@@ -265,7 +272,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetFormsStaffMember?clientId={clientId}");
                 if (response.IsSuccessStatusCode)
@@ -296,7 +304,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     Account u = JsonSerializer.Deserialize<Account>(content, options);
@@ -324,7 +333,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     StaffMember u = JsonSerializer.Deserialize<StaffMember>(content, options);
@@ -351,7 +361,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     bool? b = JsonSerializer.Deserialize<bool?>(content, options);
@@ -379,7 +390,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     StaffMember u = JsonSerializer.Deserialize<StaffMember>(content, options);
@@ -406,7 +418,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     Account u = JsonSerializer.Deserialize<Account>(content, options);
@@ -433,7 +446,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     bool b = JsonSerializer.Deserialize<bool>(content, options);
@@ -461,7 +475,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     bool b = JsonSerializer.Deserialize<bool>(content, options);
@@ -489,7 +504,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     bool b = JsonSerializer.Deserialize<bool>(content, options);
@@ -542,7 +558,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     int b = JsonSerializer.Deserialize<int>(content, options);
@@ -571,7 +588,8 @@ namespace CheckItApp.Services
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
                     {
-                        PropertyNameCaseInsensitive = true
+                        PropertyNameCaseInsensitive = true,
+                        ReferenceHandler = ReferenceHandler.Preserve
                     };
                     string content = await response.Content.ReadAsStringAsync();
                     List<Class> classes = JsonSerializer.Deserialize<List<Class>>(content, options);
@@ -595,7 +613,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
                 string formSerialized = JsonSerializer.Serialize(form, options);
                 string classesSerialized = JsonSerializer.Serialize(classes, options);
@@ -625,7 +644,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
 
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/LogOut");
@@ -652,7 +672,8 @@ namespace CheckItApp.Services
             {
                 JsonSerializerOptions options = new JsonSerializerOptions
                 {
-                    PropertyNameCaseInsensitive = true
+                    PropertyNameCaseInsensitive = true,
+                    ReferenceHandler = ReferenceHandler.Preserve
                 };
 
                 HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetFormGroups?formId={formId}");

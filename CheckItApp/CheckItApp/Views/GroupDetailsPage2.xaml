@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="CheckItApp.Views.GroupPageStaff"  >
+             x:Class="CheckItApp.Views.GroupDetailsPage2">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout>
@@ -14,17 +14,20 @@
                     </LinearGradientBrush>
                 </StackLayout.Background>
                 <Image Source="Logo.png" HorizontalOptions="EndAndExpand" WidthRequest="200"></Image>
-                <Label Text="Hello, Here you can see all your Groups" TextColor="White" FontSize="20" Margin="10,0,0,0" FontAttributes="None"  FontFamily="Noto Sans JP"></Label>
+                <Label Text="Hello, Here you can see all your Groups" TextColor="White" FontSize="15" Margin="20,0,0,0" FontAttributes="None"  FontFamily="Noto Sans JP"></Label>
 
                 <CollectionView x:Name="FormsCV" ItemsSource="{Binding GroupCollection}"
-                               SelectedItem="{Binding Class}" SelectionMode="Single" SelectionChangedCommand="{Binding Selection}">
+                           >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <StackLayout>
-                                <Frame WidthRequest="5" HeightRequest="60" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightBlue"    >
-                                    <StackLayout >
-                                        <Label Text="{Binding ClassName}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand"  />
+                                <Frame WidthRequest="5" HeightRequest="40" CornerRadius="20" Margin="5,5"  Padding="10" BackgroundColor="LightBlue"    >
+                                    <StackLayout>
+                                        <Label Text="{Binding Name}" TextColor="Black" FontSize="25" HorizontalOptions="StartAndExpand" />
+
                                     </StackLayout>
+
+
                                 </Frame>
 
                             </StackLayout>
