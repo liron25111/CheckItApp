@@ -184,6 +184,8 @@ namespace CheckItApp.ViewModels
             Classes = new ObservableCollection<Class>();
             SelectedClasses = new ObservableCollection<Class>();
             Text = string.Empty;
+
+            TripDate = DateTime.Now;
             LoadClasses();
         }
         private async void LoadClasses()

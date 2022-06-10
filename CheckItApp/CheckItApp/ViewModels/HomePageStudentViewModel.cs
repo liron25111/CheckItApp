@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace CheckItApp.ViewModels
 {
@@ -76,12 +77,19 @@ namespace CheckItApp.ViewModels
         {
             bool b = await proxy.LogOut();
             if (b)
-                PopToRoot?.Invoke();
+                PopAllTo(new LoginPage());
             else
             {
 
             }
         }
+
+        public async void PopAllTo(Page page) // clear navigation stack and goes to page
+        {
+            App.Current.MainPage.Navigation.InsertPageBefore(page, App.Current.MainPage.Navigation.NavigationStack.First());
+            await App.Current.MainPage.Navigation.PopToRootAsync();
+        }
+
         private void CreateForm()
         {
             Push?.Invoke(new CheckItApp.Views.CreateForm());
