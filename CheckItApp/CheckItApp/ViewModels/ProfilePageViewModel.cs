@@ -51,7 +51,7 @@ namespace CheckItApp.ViewModels
             {
                 Push?.Invoke(new CheckItApp.Views.HomePageStudent());
             }
-            if(u!= null)
+            else if(u!= null)
             {
                 Push?.Invoke(new CheckItApp.Views.HomePageStaff());
 
