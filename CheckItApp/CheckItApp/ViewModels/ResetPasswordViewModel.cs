@@ -59,10 +59,10 @@ namespace CheckItApp.ViewModels
 
             try
             {
-                if(((App)App.Current).CurrentUser != null)
+                if (((App)App.Current).CurrentUser != null)
                 {
                     Account u = await proxy.ResetPassAsync(NewPassword, (((App)App.Current).CurrentUser).Email);
-                    if(u != null)
+                    if (u != null)
                     {
                         ((App)App.Current).CurrentUser = u;
                         Push?.Invoke(new CheckItApp.Views.LoginPage());
@@ -72,8 +72,9 @@ namespace CheckItApp.ViewModels
                         Error = "This Password Doesn't correctly Please try again";
 
                     }
-
                 }
+
+                
                 else
                 {
                     StaffMember u = await proxy.ResetPassStaffMemberAsync(NewPassword, (((App)App.Current).CurrentUser2).Email);

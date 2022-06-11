@@ -137,7 +137,7 @@ namespace CheckItApp.ViewModels
         {
             List<StudentSignDTO> signedPeople = await proxy.GetSignedStudentsInForm(formId);
             SignedStudents = "Signed Students:";
-            UnsignedStudents = "Signed Students:";
+            UnsignedStudents = "Unsigned Students:";
             int signedStudens = 0;
             int unsignedStudens = 0;
 
